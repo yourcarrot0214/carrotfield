@@ -1,31 +1,30 @@
 import React, { useState } from "react";
-import { authService } from "Fbase";
+import { authService, firebaseInstance } from "Fbase";
 
 const Auth = () => {
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
   const [NewAccount, setNewAccount] = useState(true);
+  const [ErrorMessage, setErrorMessage] = useState("");
 
   const onSubmit = async (event) => {
     event.preventDefault();
     try {
+      let data;
       if (NewAccount) {
         // create account
-        const data = await authService.createUserWithEmailAndPassword(
+        data = await authService.createUserWithEmailAndPassword(
           Email,
           Password
         );
-        console.log("create account :: ", data);
       } else {
         // log in
-        const data = await authService.signInWithEmailAndPassword(
-          Email,
-          Password
-        );
+        data = await authService.signInWithEmailAndPassword(Email, Password);
         console.log("login data ::", data);
       }
     } catch (error) {
-      console.log("login form submit error :: ", error);
+      console.log("login form submit error :: ", error.message);
+      setErrorMessage(error.message);
     }
   };
 
@@ -38,6 +37,23 @@ const Auth = () => {
       setPassword(value);
     }
   };
+
+  const toggleAccount = () => {
+    setNewAccount((prev) => !prev);
+  };
+
+  const onSocialLogin = async (event) => {
+    const { name } = event.target;
+    let provider;
+    if (name === "google") {
+      provider = new firebaseInstance.auth.GoogleAuthProvider();
+    } else if (name === "github") {
+      provider = new firebaseInstance.auth.GithubAuthProvider();
+    }
+    const data = await authService.signInWithRedirect(provider);
+    console.log("social login data :: ", data);
+  };
+
   return (
     <>
       <form onSubmit={onSubmit}>
@@ -58,9 +74,17 @@ const Auth = () => {
           required
         />
         <input type="submit" value={NewAccount ? "Create Account" : "Log In"} />
+        {ErrorMessage}
       </form>
-      <button>Continue with Google</button>
-      <button>Continue with Github</button>
+      <span onClick={toggleAccount}>
+        {NewAccount ? "Sign In" : "Create Account"}
+      </span>
+      <button name="google" onClick={onSocialLogin}>
+        Continue with Google
+      </button>
+      <button name="github" onClick={onSocialLogin}>
+        Continue with Github
+      </button>
     </>
   );
 };
