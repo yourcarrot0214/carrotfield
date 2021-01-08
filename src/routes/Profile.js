@@ -1,11 +1,11 @@
 import React from "react";
-import { authService } from "../Fbase";
+import { firebaseAuth } from "../Fbase";
 import { useHistory } from "react-router-dom";
 
 const Profile = () => {
   const history = useHistory();
   const onLogOut = () => {
-    authService.signOut();
+    firebaseAuth.signOut();
     history.push("/");
   };
   return (

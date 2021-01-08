@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { authService, firebaseInstance } from "Fbase";
+import { firebaseAuth, firebaseInstance } from "Fbase";
 
 const Auth = () => {
   const [Email, setEmail] = useState("");
@@ -13,13 +13,13 @@ const Auth = () => {
       let data;
       if (NewAccount) {
         // create account
-        data = await authService.createUserWithEmailAndPassword(
+        data = await firebaseAuth.createUserWithEmailAndPassword(
           Email,
           Password
         );
       } else {
         // log in
-        data = await authService.signInWithEmailAndPassword(Email, Password);
+        data = await firebaseAuth.signInWithEmailAndPassword(Email, Password);
         console.log("login data ::", data);
       }
     } catch (error) {
@@ -50,7 +50,7 @@ const Auth = () => {
     } else if (name === "github") {
       provider = new firebaseInstance.auth.GithubAuthProvider();
     }
-    const data = await authService.signInWithRedirect(provider);
+    const data = await firebaseAuth.signInWithRedirect(provider);
     console.log("social login data :: ", data);
   };
 
