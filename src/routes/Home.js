@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { firebaseStore } from "../Fbase";
+import TweetPage from "./TweetPage";
 
 const Home = ({ UserObject }) => {
   const [Tweet, setTweet] = useState("");
@@ -14,7 +15,6 @@ const Home = ({ UserObject }) => {
       setTweets(tweetArray);
     });
   }, []);
-  console.log(Tweets);
 
   const onTweet = (event) => {
     const { value } = event.target;
@@ -45,9 +45,11 @@ const Home = ({ UserObject }) => {
         <input type="submit" value="Tweet" />
       </form>
       {Tweets.map((tweet) => (
-        <div key={tweet.id}>
-          <h4>{tweet.text}</h4>
-        </div>
+        <TweetPage
+          key={tweet.id}
+          tweetObject={tweet}
+          isOwner={UserObject.uid === tweet.creatorId}
+        />
       ))}
     </>
   );
