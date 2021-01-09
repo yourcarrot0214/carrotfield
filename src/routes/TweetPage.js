@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { firebaseStore } from "../Fbase";
+import { firebaseStore, firebaseStorage } from "../Fbase";
 
 const TweetPage = ({ isOwner, tweetObject }) => {
   // editing mode setup
@@ -28,6 +28,7 @@ const TweetPage = ({ isOwner, tweetObject }) => {
     const check = window.confirm("정말 삭제하시겠습니까?");
     if (check) {
       await firebaseStore.doc(`tweets/${tweetObject.id}`).delete();
+      await firebaseStorage.refFromURL(tweetObject.attachmentURL).delete();
     }
   };
 
