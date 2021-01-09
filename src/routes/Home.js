@@ -1,8 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { firebaseStore } from "../Fbase";
 
 const Home = () => {
   const [Tweet, setTweet] = useState("");
+  const [Tweets, setTweets] = useState([]);
+
+  const getTweetsData = async () => {
+    const tweetsInDB = await firebaseStore.collection("tweets").get("server");
+    tweetsInDB.forEach((document) => {
+      const tweetObject = {
+        id: document.id,
+        ...document.data(),
+      };
+      setTweets((prev) => [tweetObject, ...prev]);
+    });
+  };
+
+  useEffect(() => {
+    getTweetsData();
+  }, []);
 
   const onTweet = (event) => {
     const { value } = event.target;
@@ -17,6 +33,7 @@ const Home = () => {
     });
     setTweet("");
   };
+  console.log(Tweets);
   return (
     <>
       <h1>HOME</h1>
@@ -30,6 +47,11 @@ const Home = () => {
         />
         <input type="submit" value="Tweet" />
       </form>
+      {Tweets.map((tweet) => (
+        <div key={tweet.id}>
+          <h4>{tweet.tweet}</h4>
+        </div>
+      ))}
     </>
   );
 };
