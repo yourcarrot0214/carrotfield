@@ -28,7 +28,8 @@ const TweetPage = ({ isOwner, tweetObject }) => {
     const check = window.confirm("정말 삭제하시겠습니까?");
     if (check) {
       await firebaseStore.doc(`tweets/${tweetObject.id}`).delete();
-      await firebaseStorage.refFromURL(tweetObject.attachmentURL).delete();
+      if (tweetObject.attachmentURL)
+        await firebaseStorage.refFromURL(tweetObject.attachmentURL).delete();
     }
   };
 
