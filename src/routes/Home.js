@@ -28,7 +28,7 @@ const Home = ({ UserObject }) => {
     // attachment image upload
     let attachmentURL = "";
 
-    if (AttachmentImage != "") {
+    if (AttachmentImage !== "") {
       // attachment image가 있으면 사진 경로를 지정
       const attachmentRef = firebaseStorage
         .ref()
