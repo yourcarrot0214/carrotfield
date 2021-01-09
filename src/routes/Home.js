@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { firebaseStore } from "../Fbase";
+import { firebaseStore, firebaseStorage } from "../Fbase";
 import TweetPage from "./TweetPage";
+import { v4 as uuidv4 } from "uuid";
 
 const Home = ({ UserObject }) => {
   const [Tweet, setTweet] = useState("");
   const [Tweets, setTweets] = useState([]);
-  const [AttachmentImage, setAttachmentImage] = useState();
+  const [AttachmentImage, setAttachmentImage] = useState("");
 
   useEffect(() => {
     firebaseStore.collection("tweets").onSnapshot((snapshot) => {
@@ -24,12 +25,29 @@ const Home = ({ UserObject }) => {
 
   const onSubmit = async (event) => {
     event.preventDefault();
-    await firebaseStore.collection("tweets").add({
+    // attachment image upload
+    let attachmentURL = "";
+
+    if (AttachmentImage != "") {
+      // attachment image가 있으면 사진 경로를 지정
+      const attachmentRef = firebaseStorage
+        .ref()
+        .child(`${UserObject.uid}/${uuidv4()}`);
+      const response = await attachmentRef.putString(
+        AttachmentImage,
+        "data_url"
+      );
+      attachmentURL = await response.ref.getDownloadURL();
+    }
+    const tweetObject = {
       text: Tweet,
       createdAt: Date.now(),
       creatorId: UserObject.uid,
-    });
+      attachmentURL,
+    };
+    await firebaseStore.collection("tweets").add(tweetObject);
     setTweet("");
+    onClearAttachment();
   };
 
   const onFileChange = (event) => {
@@ -44,7 +62,7 @@ const Home = ({ UserObject }) => {
   };
 
   const onClearAttachment = () => {
-    setAttachmentImage(null);
+    setAttachmentImage("");
   };
 
   return (

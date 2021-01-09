@@ -51,6 +51,14 @@ const TweetPage = ({ isOwner, tweetObject }) => {
       ) : (
         <>
           <h4>{tweetObject.text}</h4>
+          {tweetObject.attachmentURL && (
+            <img
+              src={tweetObject.attachmentURL}
+              alt="첨부이미지"
+              width="50px"
+              height="50px"
+            />
+          )}
           {isOwner && (
             <>
               <button onClick={onDeleteTweet}>Delete Tweet</button>
