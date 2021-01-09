@@ -20,7 +20,7 @@ const TweetPage = ({ isOwner, tweetObject }) => {
     setNewTweet(value);
   };
 
-  const onUpdateTweet = () => {
+  const toggleEditing = () => {
     setIsEditing((prev) => !prev);
   };
 
@@ -45,6 +45,7 @@ const TweetPage = ({ isOwner, tweetObject }) => {
               required
             />
             <input type="submit" value="Edit Tweet" />
+            <input type="button" value="Cancle" onClick={toggleEditing} />
           </form>
         </>
       ) : (
@@ -53,7 +54,7 @@ const TweetPage = ({ isOwner, tweetObject }) => {
           {isOwner && (
             <>
               <button onClick={onDeleteTweet}>Delete Tweet</button>
-              <button onClick={onUpdateTweet}>Update Tweet</button>
+              <button onClick={toggleEditing}>Update Tweet</button>
             </>
           )}
         </>
