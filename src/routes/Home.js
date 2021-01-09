@@ -1,24 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { firebaseStore } from "../Fbase";
 
-const Home = () => {
+const Home = ({ UserObject }) => {
   const [Tweet, setTweet] = useState("");
   const [Tweets, setTweets] = useState([]);
 
-  const getTweetsData = async () => {
-    const tweetsInDB = await firebaseStore.collection("tweets").get("server");
-    tweetsInDB.forEach((document) => {
-      const tweetObject = {
-        id: document.id,
-        ...document.data(),
-      };
-      setTweets((prev) => [tweetObject, ...prev]);
-    });
-  };
-
   useEffect(() => {
-    getTweetsData();
+    firebaseStore.collection("tweets").onSnapshot((snapshot) => {
+      const tweetArray = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setTweets(tweetArray);
+    });
   }, []);
+  console.log(Tweets);
 
   const onTweet = (event) => {
     const { value } = event.target;
@@ -28,12 +24,13 @@ const Home = () => {
   const onSubmit = async (event) => {
     event.preventDefault();
     await firebaseStore.collection("tweets").add({
-      tweet: Tweet,
+      text: Tweet,
       createdAt: Date.now(),
+      creatorId: UserObject.uid,
     });
     setTweet("");
   };
-  console.log(Tweets);
+
   return (
     <>
       <h1>HOME</h1>
@@ -49,7 +46,7 @@ const Home = () => {
       </form>
       {Tweets.map((tweet) => (
         <div key={tweet.id}>
-          <h4>{tweet.tweet}</h4>
+          <h4>{tweet.text}</h4>
         </div>
       ))}
     </>
