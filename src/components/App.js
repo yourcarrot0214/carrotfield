@@ -12,7 +12,11 @@ function App() {
     firebaseAuth.onAuthStateChanged((user) => {
       if (user) {
         setIsLoggedIn(true);
-        setUserObject(user);
+        setUserObject({
+          displayName: user.displayName,
+          uid: user.uid,
+          updateProfile: (args) => user.updateProfile(args),
+        });
       } else {
         setIsLoggedIn(false);
         setUserObject(null);
@@ -20,10 +24,24 @@ function App() {
       setInit(true);
     });
   }, []);
+
+  const refreshUser = () => {
+    const user = firebaseAuth.currentUser;
+    setUserObject({
+      displayName: user.displayName,
+      uid: user.uid,
+      updateProfile: (args) => user.updateProfile(args),
+    });
+  };
+
   return (
     <>
       {Init ? (
-        <AppRouter IsLoggedIn={IsLoggedIn} UserObject={UserObject} />
+        <AppRouter
+          IsLoggedIn={IsLoggedIn}
+          UserObject={UserObject}
+          refreshUser={refreshUser}
+        />
       ) : (
         "Initializing ..."
       )}
