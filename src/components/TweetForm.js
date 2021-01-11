@@ -13,8 +13,8 @@ const TweetForm = ({ UserObject }) => {
   };
 
   const onSubmit = async (event) => {
-    if (Tweet === "") return;
     event.preventDefault();
+    if (Tweet === "") return;
     // attachment image upload
     let attachmentURL = "";
 
@@ -66,6 +66,7 @@ const TweetForm = ({ UserObject }) => {
             maxLength={120}
             value={Tweet}
           />
+          <input type="submit" value="&rarr;" className="factoryInput__arrow" />
         </div>
         <label htmlFor="attach-file" className="factoryInput__label">
           <span>Add photos</span>
