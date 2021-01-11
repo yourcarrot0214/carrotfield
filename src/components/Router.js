@@ -12,12 +12,23 @@ const AppRouter = ({ IsLoggedIn, UserObject, refreshUser }) => {
       <Switch>
         {IsLoggedIn ? (
           <>
-            <Route exact path="/">
-              <Home UserObject={UserObject} />
-            </Route>
-            <Route exact path="/profile">
-              <Profile UserObject={UserObject} refreshUser={refreshUser} />
-            </Route>
+            <div
+              style={{
+                maxWidth: 890,
+                width: "100%",
+                margin: "0 auto",
+                marginTop: 80,
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+              <Route exact path="/">
+                <Home UserObject={UserObject} />
+              </Route>
+              <Route exact path="/profile">
+                <Profile UserObject={UserObject} refreshUser={refreshUser} />
+              </Route>
+            </div>
           </>
         ) : (
           <Route>

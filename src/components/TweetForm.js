@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { firebaseStore, firebaseStorage } from "../Fbase";
 import { v4 as uuidv4 } from "uuid";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const TweetForm = ({ UserObject }) => {
   const [Tweet, setTweet] = useState("");
@@ -11,6 +13,7 @@ const TweetForm = ({ UserObject }) => {
   };
 
   const onSubmit = async (event) => {
+    if (Tweet === "") return;
     event.preventDefault();
     // attachment image upload
     let attachmentURL = "";
@@ -53,30 +56,41 @@ const TweetForm = ({ UserObject }) => {
   };
   return (
     <>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} className="factoryForm">
+        <div className="factoryInput__container">
+          <input
+            className="factoryInput__input"
+            type="text"
+            placeholder="무슨 일이 일어나고 있나요?"
+            onChange={onTweet}
+            maxLength={120}
+            value={Tweet}
+          />
+        </div>
+        <label htmlFor="attach-file" className="factoryInput__label">
+          <span>Add photos</span>
+          <FontAwesomeIcon icon={faPlus} />
+        </label>
         <input
-          type="text"
-          placeholder="무슨 일이 일어나고 있나요?"
-          onChange={onTweet}
-          maxLength={120}
-          value={Tweet}
+          id="attach-file"
+          type="file"
+          accept="image/*"
+          onChange={onFileChange}
+          style={{ opacity: 0 }}
         />
-        <input type="file" accept="image/*" onChange={onFileChange} />
-        <input type="submit" value="Tweet" />
         {AttachmentImage && (
-          <>
+          <div className="factoryForm__attachment">
             <img
               src={AttachmentImage}
-              alt="첨부이미지"
-              width="50px"
-              height="50px"
+              style={{
+                backgroundImage: AttachmentImage,
+              }}
             />
-            <input
-              type="button"
-              value="Image Clear"
-              onClick={onClearAttachment}
-            />
-          </>
+            <div className="factoryForm__clear" onClick={onClearAttachment}>
+              <span>Remove</span>
+              <FontAwesomeIcon icon={faTimes} />
+            </div>
+          </div>
         )}
       </form>
     </>

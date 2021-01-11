@@ -33,7 +33,6 @@ function App() {
       updateProfile: (args) => user.updateProfile(args),
     });
   };
-  console.log(UserObject);
 
   return (
     <>
@@ -46,7 +45,9 @@ function App() {
       ) : (
         "Initializing ..."
       )}
-      <footer>&copy; Carrot Field {new Date().getFullYear()}</footer>
+      <footer style={{ textAlign: "center", marginTop: "2rem" }}>
+        &copy; Carrot Field {new Date().getFullYear()}
+      </footer>
     </>
   );
 }

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { firebaseStore, firebaseStorage } from "../Fbase";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 
 const TweetPage = ({ isOwner, tweetObject }) => {
   // editing mode setup
@@ -34,42 +36,43 @@ const TweetPage = ({ isOwner, tweetObject }) => {
   };
 
   return (
-    <>
+    <div className="nweet">
       {IsEditing ? (
         <>
           <h4>{tweetObject.text}</h4>
-          <form onSubmit={onUpdateSubmit}>
+          <form onSubmit={onUpdateSubmit} className="container nweetEdit">
             <input
               type="text"
               value={NewTweet}
               placeholder="Edit Your Tweet"
               onChange={onEditingTweet}
+              autoFocus
               required
+              className="formInput"
             />
-            <input type="submit" value="Edit Tweet" />
-            <input type="button" value="Cancle" onClick={toggleEditing} />
+            <input type="submit" value="Edit Tweet" className="formBtn" />
+            <span onClick={toggleEditing} className="formBtn cancelBtn">
+              Cancel
+            </span>
           </form>
         </>
       ) : (
         <>
           <h4>{tweetObject.text}</h4>
-          {tweetObject.attachmentURL && (
-            <img
-              src={tweetObject.attachmentURL}
-              alt="첨부이미지"
-              width="50px"
-              height="50px"
-            />
-          )}
+          {tweetObject.attachmentURL && <img src={tweetObject.attachmentURL} />}
           {isOwner && (
-            <>
-              <button onClick={onDeleteTweet}>Delete Tweet</button>
-              <button onClick={toggleEditing}>Update Tweet</button>
-            </>
+            <div className="nweet__actions">
+              <span onClick={onDeleteTweet}>
+                <FontAwesomeIcon icon={faTrash} />
+              </span>
+              <span onClick={toggleEditing}>
+                <FontAwesomeIcon icon={faPencilAlt} />
+              </span>
+            </div>
           )}
         </>
       )}
-    </>
+    </div>
   );
 };
 

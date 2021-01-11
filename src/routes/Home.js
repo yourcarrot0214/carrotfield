@@ -17,18 +17,19 @@ const Home = ({ UserObject }) => {
   }, []);
 
   return (
-    <>
-      <h1>HOME</h1>
+    <div className="container">
       <TweetForm UserObject={UserObject} />
 
-      {Tweets.map((tweet) => (
-        <TweetPage
-          key={tweet.id}
-          tweetObject={tweet}
-          isOwner={UserObject.uid === tweet.creatorId}
-        />
-      ))}
-    </>
+      <div style={{ marginTop: 30 }}>
+        {Tweets.map((tweet) => (
+          <TweetPage
+            key={tweet.id}
+            tweetObject={tweet}
+            isOwner={UserObject.uid === tweet.creatorId}
+          />
+        ))}
+      </div>
+    </div>
   );
 };
 
