@@ -18,6 +18,7 @@ const Profile = ({ UserObject, refreshUser }) => {
       });
       refreshUser();
     }
+    setNewDisplayName("");
   };
 
   const onChange = (event) => {

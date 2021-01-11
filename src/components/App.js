@@ -33,6 +33,7 @@ function App() {
       updateProfile: (args) => user.updateProfile(args),
     });
   };
+  console.log(UserObject);
 
   return (
     <>
