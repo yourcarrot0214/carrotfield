@@ -27,7 +27,7 @@ const Profile = ({ UserObject, refreshUser }) => {
   };
 
   return (
-    <div classname="container">
+    <div className="container">
       <h2>Profile</h2>
       <form onSubmit={onChangeDisplayName} className="profileForm">
         <input
