@@ -7,13 +7,16 @@ const Home = ({ UserObject }) => {
   const [Tweets, setTweets] = useState([]);
 
   useEffect(() => {
-    firebaseStore.collection("tweets").onSnapshot((snapshot) => {
-      const tweetArray = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      setTweets(tweetArray);
-    });
+    firebaseStore
+      .collection("tweets")
+      .orderBy("createdAt", "desc")
+      .onSnapshot((snapshot) => {
+        const tweetArray = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setTweets(tweetArray);
+      });
   }, []);
 
   return (
