@@ -7,6 +7,11 @@ const Home = ({ UserObject }) => {
   const [Tweets, setTweets] = useState([]);
 
   useEffect(() => {
+    console.log(UserObject);
+    onTweetListener();
+  }, []);
+
+  const onTweetListener = () => {
     firebaseStore
       .collection("tweets")
       .orderBy("createdAt", "desc")
@@ -17,7 +22,7 @@ const Home = ({ UserObject }) => {
         }));
         setTweets(tweetArray);
       });
-  }, []);
+  };
 
   return (
     <div className="container">
@@ -29,6 +34,7 @@ const Home = ({ UserObject }) => {
             key={tweet.id}
             tweetObject={tweet}
             isOwner={UserObject.uid === tweet.creatorId}
+            UserObject={UserObject}
           />
         ))}
       </div>

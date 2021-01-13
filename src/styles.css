@@ -183,6 +183,10 @@ form {
   font-size: 14px;
 }
 
+.nweet h5 {
+  color: rgba(255, 255, 255, 0.5);
+}
+
 .nweet img {
   right: -10px;
   top: 20px;

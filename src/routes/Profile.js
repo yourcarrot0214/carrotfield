@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { firebaseAuth, firebaseStore } from "../Fbase";
 import { useHistory } from "react-router-dom";
+import { faSnapchat } from "@fortawesome/free-brands-svg-icons";
 
 const Profile = ({ UserObject, refreshUser }) => {
   const history = useHistory();
@@ -17,8 +18,10 @@ const Profile = ({ UserObject, refreshUser }) => {
         displayName: NewDisplayName,
       });
       refreshUser();
+      // onUpdateDisplayName();
+
+      setNewDisplayName("");
     }
-    setNewDisplayName("");
   };
 
   const onChange = (event) => {

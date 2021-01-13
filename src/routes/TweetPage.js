@@ -1,10 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { firebaseStore, firebaseStorage } from "../Fbase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 
-const TweetPage = ({ isOwner, tweetObject }) => {
+const TweetPage = ({ isOwner, tweetObject, UserObject }) => {
+  useEffect(() => {
+    onUpdateDisplayName();
+  }, []);
   console.log(tweetObject);
+
+  const onUpdateDisplayName = () => {
+    console.log("test function");
+    firebaseStore
+      .collection("tweets")
+      .where("creatorId", "==", UserObject.uid)
+      .get()
+      .then((snapshot) => {
+        if (snapshot.empty) {
+          console.log("No matching documents.");
+          return;
+        }
+        snapshot.forEach((doc) => {
+          // console.log("doc.id : ", doc.id);
+          firebaseStore.collection("tweets").doc(doc.id).update({
+            displayName: UserObject.displayName,
+          });
+        });
+      });
+  };
+
   // editing mode setup
   const [IsEditing, setIsEditing] = useState(false);
   const [NewTweet, setNewTweet] = useState(tweetObject.text);
@@ -40,7 +64,7 @@ const TweetPage = ({ isOwner, tweetObject }) => {
     <div className="nweet">
       {IsEditing ? (
         <>
-          <h4>{tweetObject.text}</h4>
+          <h4>{tweetObject.displayName}</h4>
           <form onSubmit={onUpdateSubmit} className="container nweetEdit">
             <input
               type="text"
@@ -60,6 +84,7 @@ const TweetPage = ({ isOwner, tweetObject }) => {
       ) : (
         <>
           <h4>{tweetObject.displayName}</h4>
+          <h5>{tweetObject.email}</h5>
           <h4>{tweetObject.text}</h4>
           {tweetObject.attachmentURL && (
             <img src={tweetObject.attachmentURL} alt="첨부이미지" />

@@ -10,6 +10,7 @@ function App() {
     firebaseAuth.onAuthStateChanged((user) => {
       if (user) {
         setUserObject({
+          email: user.email,
           displayName: user.displayName,
           uid: user.uid,
           updateProfile: (args) => user.updateProfile(args),

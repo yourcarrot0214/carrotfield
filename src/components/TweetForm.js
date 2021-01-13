@@ -30,6 +30,7 @@ const TweetForm = ({ UserObject }) => {
       attachmentURL = await response.ref.getDownloadURL();
     }
     const tweetObject = {
+      email: UserObject.email,
       displayName: UserObject.displayName,
       text: Tweet,
       createdAt: Date.now(),
