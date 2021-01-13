@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 
 const TweetPage = ({ isOwner, tweetObject }) => {
+  console.log(tweetObject);
   // editing mode setup
   const [IsEditing, setIsEditing] = useState(false);
   const [NewTweet, setNewTweet] = useState(tweetObject.text);
@@ -58,8 +59,11 @@ const TweetPage = ({ isOwner, tweetObject }) => {
         </>
       ) : (
         <>
+          <h4>{tweetObject.displayName}</h4>
           <h4>{tweetObject.text}</h4>
-          {tweetObject.attachmentURL && <img src={tweetObject.attachmentURL} />}
+          {tweetObject.attachmentURL && (
+            <img src={tweetObject.attachmentURL} alt="첨부이미지" />
+          )}
           {isOwner && (
             <div className="nweet__actions">
               <span onClick={onDeleteTweet}>

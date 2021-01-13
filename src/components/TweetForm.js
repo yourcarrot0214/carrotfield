@@ -30,6 +30,7 @@ const TweetForm = ({ UserObject }) => {
       attachmentURL = await response.ref.getDownloadURL();
     }
     const tweetObject = {
+      displayName: UserObject.displayName,
       text: Tweet,
       createdAt: Date.now(),
       creatorId: UserObject.uid,
@@ -86,6 +87,7 @@ const TweetForm = ({ UserObject }) => {
               style={{
                 backgroundImage: AttachmentImage,
               }}
+              alt="첨부이미지"
             />
             <div className="factoryForm__clear" onClick={onClearAttachment}>
               <span>Remove</span>
