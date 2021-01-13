@@ -7,10 +7,8 @@ const TweetPage = ({ isOwner, tweetObject, UserObject }) => {
   useEffect(() => {
     onUpdateDisplayName();
   }, []);
-  console.log(tweetObject);
 
   const onUpdateDisplayName = () => {
-    console.log("test function");
     firebaseStore
       .collection("tweets")
       .where("creatorId", "==", UserObject.uid)
@@ -21,7 +19,6 @@ const TweetPage = ({ isOwner, tweetObject, UserObject }) => {
           return;
         }
         snapshot.forEach((doc) => {
-          // console.log("doc.id : ", doc.id);
           firebaseStore.collection("tweets").doc(doc.id).update({
             displayName: UserObject.displayName,
           });

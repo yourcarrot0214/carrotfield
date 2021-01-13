@@ -7,7 +7,6 @@ const Home = ({ UserObject }) => {
   const [Tweets, setTweets] = useState([]);
 
   useEffect(() => {
-    console.log(UserObject);
     onTweetListener();
   }, []);
 
