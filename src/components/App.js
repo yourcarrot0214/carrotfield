@@ -8,11 +8,13 @@ function App() {
 
   useEffect(() => {
     firebaseAuth.onAuthStateChanged((user) => {
+      console.log(user);
       if (user) {
         setUserObject({
           email: user.email,
           displayName: user.displayName,
           uid: user.uid,
+          photoURL: user.providerData[0].photoURL || null,
           updateProfile: (args) => user.updateProfile(args),
         });
       } else {
@@ -21,6 +23,8 @@ function App() {
       setInit(true);
     });
   }, []);
+
+  console.log(UserObject);
 
   const refreshUser = () => {
     const user = firebaseAuth.currentUser;

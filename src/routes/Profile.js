@@ -31,6 +31,11 @@ const Profile = ({ UserObject, refreshUser }) => {
 
   return (
     <div className="container">
+      <img
+        className="profile__img"
+        alt="프로필 이미지"
+        src={UserObject.photoURL}
+      />
       <form onSubmit={onChangeDisplayName} className="profileForm">
         <input
           type="text"
