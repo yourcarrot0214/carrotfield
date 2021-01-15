@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { firebaseStore, firebaseStorage } from "../Fbase";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
+import TweetOptions from "../components/TweetOptions";
 
 const TweetPage = ({ isOwner, tweetObject, UserObject }) => {
   useEffect(() => {
     onUpdateDisplayName();
   }, []);
-
+  // Profile.js 로 옮겨서 동작해볼것.
   const onUpdateDisplayName = () => {
     firebaseStore
       .collection("tweets")
@@ -87,14 +86,10 @@ const TweetPage = ({ isOwner, tweetObject, UserObject }) => {
             <img src={tweetObject.attachmentURL} alt="첨부이미지" />
           )}
           {isOwner && (
-            <div className="nweet__actions">
-              <span onClick={onDeleteTweet}>
-                <FontAwesomeIcon icon={faTrash} />
-              </span>
-              <span onClick={toggleEditing}>
-                <FontAwesomeIcon icon={faPencilAlt} />
-              </span>
-            </div>
+            <TweetOptions
+              onDeleteTweet={onDeleteTweet}
+              toggleEditing={toggleEditing}
+            />
           )}
         </>
       )}
@@ -103,3 +98,28 @@ const TweetPage = ({ isOwner, tweetObject, UserObject }) => {
 };
 
 export default TweetPage;
+
+// 1. css : 첨부 이미지를 tweet 내부로. width: 200px? 기준
+// 2. css : TweetOptions component 위치 tweet 하단 space-between
+// 3. .newwts__actions element를 별도의 component로 분리-적용하기
+//    재사용 가능성을 염두에 두고 props, state 설계하기
+/*
+src/components/Options.js
+import React from 'react';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
+
+const TweetOptions = ({onDeleteTweet, toggleEditing}) => {
+  return (
+  <div className="nweet__actions">
+    <span onClick={onDeleteTweet}>
+      <FontAwesomeIcon icon={faTrash} />
+    </span>
+    <span onClick={toggleEditing}>
+      <FontAwesomeIcon icon={faPencilAlt} />
+    </span>
+  </div>
+  )
+}
+
+*/
