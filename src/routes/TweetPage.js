@@ -3,9 +3,14 @@ import { firebaseStore, firebaseStorage } from "../Fbase";
 import TweetOptions from "../components/TweetOptions";
 
 const TweetPage = ({ isOwner, tweetObject, UserObject }) => {
+  // editing mode setup
+  const [IsEditing, setIsEditing] = useState(false);
+  const [NewTweet, setNewTweet] = useState(tweetObject.text);
+
   useEffect(() => {
     onUpdateDisplayName();
-  }, []);
+  });
+
   // Profile.js 로 옮겨서 동작해볼것.
   const onUpdateDisplayName = () => {
     firebaseStore
@@ -24,10 +29,6 @@ const TweetPage = ({ isOwner, tweetObject, UserObject }) => {
         });
       });
   };
-
-  // editing mode setup
-  const [IsEditing, setIsEditing] = useState(false);
-  const [NewTweet, setNewTweet] = useState(tweetObject.text);
 
   const onUpdateSubmit = async (event) => {
     event.preventDefault();
