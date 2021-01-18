@@ -39,6 +39,7 @@ const Profile = ({ UserObject, refreshUser }) => {
           onChange={onChange}
           autoFocus
           className="formInput"
+          maxLength={15}
         />
         <input
           type="submit"

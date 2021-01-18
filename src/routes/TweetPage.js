@@ -80,9 +80,12 @@ const TweetPage = ({ isOwner, tweetObject, UserObject }) => {
         </>
       ) : (
         <>
-          <h4>{tweetObject.displayName}</h4>
-          <h5>{tweetObject.email}</h5>
-          <h4>{tweetObject.text}</h4>
+          <h4 className="nweet__displayName">
+            {tweetObject.displayName}
+            <span className="nweet__email">{tweetObject.email}</span>
+          </h4>
+
+          <h4 className="nweet__text">{tweetObject.text}</h4>
           {tweetObject.attachmentURL && (
             <img src={tweetObject.attachmentURL} alt="첨부이미지" />
           )}
@@ -99,28 +102,3 @@ const TweetPage = ({ isOwner, tweetObject, UserObject }) => {
 };
 
 export default TweetPage;
-
-// 1. css : 첨부 이미지를 tweet 내부로. width: 200px? 기준
-// 2. css : TweetOptions component 위치 tweet 하단 space-between
-// 3. .newwts__actions element를 별도의 component로 분리-적용하기
-//    재사용 가능성을 염두에 두고 props, state 설계하기
-/*
-src/components/Options.js
-import React from 'react';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
-
-const TweetOptions = ({onDeleteTweet, toggleEditing}) => {
-  return (
-  <div className="nweet__actions">
-    <span onClick={onDeleteTweet}>
-      <FontAwesomeIcon icon={faTrash} />
-    </span>
-    <span onClick={toggleEditing}>
-      <FontAwesomeIcon icon={faPencilAlt} />
-    </span>
-  </div>
-  )
-}
-
-*/
