@@ -11,7 +11,6 @@ const TweetPage = ({ isOwner, tweetObject, UserObject }) => {
     onUpdateDisplayName();
   });
 
-  // Profile.js 로 옮겨서 동작해볼것.
   const onUpdateDisplayName = () => {
     firebaseStore
       .collection("tweets")

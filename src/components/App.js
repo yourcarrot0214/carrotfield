@@ -8,7 +8,6 @@ function App() {
 
   useEffect(() => {
     firebaseAuth.onAuthStateChanged((user) => {
-      console.log(user);
       if (user) {
         setUserObject({
           email: user.email,
@@ -31,6 +30,7 @@ function App() {
     setUserObject({
       displayName: user.displayName,
       uid: user.uid,
+      photoURL: user.photoURL,
       updateProfile: (args) => user.updateProfile(args),
     });
   };
