@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { firebaseAuth, firebaseStorage, firebaseStore } from "../Fbase";
 import { useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { v4 as uuidv4 } from "uuid";
 
 const Profile = ({ UserObject, refreshUser }) => {
@@ -62,7 +62,13 @@ const Profile = ({ UserObject, refreshUser }) => {
 
   return (
     <div className="container">
-      <img className="profile__img" alt="프로필 이미지" src={PhotoURL} />
+      {PhotoURL ? (
+        <img className="profile__img" alt="프로필 이미지" src={PhotoURL} />
+      ) : (
+        <div className="profile__img__container">
+          <FontAwesomeIcon icon={faUserCircle} size="6x" />
+        </div>
+      )}
       <form onSubmit={onUpdateProfile} className="profileForm">
         <label htmlFor="image-file" className="profile__label">
           <span>Change Profile Image</span>
