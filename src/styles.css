@@ -97,6 +97,14 @@ form {
   margin: 0 auto;
 }
 
+/* Loader */
+
+.loader__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 /* Nwitter Factory */
 
 .factoryForm {

@@ -33,7 +33,7 @@ const TweetForm = ({ UserObject }) => {
       email: UserObject.email,
       displayName: UserObject.displayName,
       text: Tweet,
-      createdAt: Date.now(),
+      createdAt: new Date(),
       creatorId: UserObject.uid,
       attachmentURL,
     };
