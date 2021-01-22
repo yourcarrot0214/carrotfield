@@ -70,3 +70,10 @@ const TweetPage = ({ isOwner, tweetObject, UserObject }) => {
 };
 
 export default TweetPage;
+
+/*
+  - UserObject.email 값이 stylenbs@gmail.com인 user만 열람 가능
+  - user가 tweet을 작성하면 편지함 생성
+  - 편지함 내에 해당 user가 작성한 tweet 출력
+
+*/
