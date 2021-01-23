@@ -2,11 +2,17 @@ import React, { useState } from "react";
 import { firebaseStore, firebaseStorage } from "../Fbase";
 import { v4 as uuidv4 } from "uuid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
+import {
+  faPlus,
+  faTimes,
+  faLock,
+  faLockOpen,
+} from "@fortawesome/free-solid-svg-icons";
 
 const TweetForm = ({ UserObject }) => {
   const [Tweet, setTweet] = useState("");
   const [AttachmentImage, setAttachmentImage] = useState("");
+  const [IsPublic, setIsPublic] = useState(true);
   const onTweet = (event) => {
     const { value } = event.target;
     setTweet(value);
@@ -35,6 +41,7 @@ const TweetForm = ({ UserObject }) => {
       text: Tweet,
       createdAt: new Date(),
       creatorId: UserObject.uid,
+      scope: IsPublic,
       attachmentURL,
     };
     await firebaseStore.collection("tweets").add(tweetObject);
@@ -56,8 +63,27 @@ const TweetForm = ({ UserObject }) => {
   const onClearAttachment = () => {
     setAttachmentImage("");
   };
+
+  const onChangeScope = () => {
+    setIsPublic((prev) => !prev);
+    console.log(IsPublic);
+  };
+
   return (
     <>
+      <div className="form__scope" onClick={onChangeScope}>
+        {IsPublic ? (
+          <>
+            <FontAwesomeIcon icon={faLockOpen} />
+            <span>게시글이 모두에게 공개됩니다.</span>
+          </>
+        ) : (
+          <>
+            <FontAwesomeIcon icon={faLock} />
+            <span>게시글이 정병훈 님에게만 공개됩니다.</span>
+          </>
+        )}
+      </div>
       <form onSubmit={onSubmit} className="factoryForm">
         <div className="factoryInput__container">
           <input

@@ -26,7 +26,18 @@ firebaseStore
 
 const initialState = {
   UserObject: {},
+  refreshUser: () => {
+    const user = firebaseAuth.currentUser;
+    this.UserObject = {
+      displayName: user.displayName,
+      uid: user.uid,
+      photoURL: user.photoURL,
+      updateProfile: (args) => user.updateProfile(args),
+    };
+  },
   Tweets: [],
 };
+
+console.log(initialState);
 
 export default initialState;

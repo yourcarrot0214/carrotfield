@@ -196,6 +196,16 @@ form {
   font-size: 12px;
 }
 
+.form__scope {
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 1rem;
+  font-size: 0.8rem;
+}
+
+.form__scope span {
+  margin-left: 0.5rem;
+}
+
 /* Nweet */
 
 .nweetEdit .formBtn {
