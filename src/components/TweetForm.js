@@ -41,7 +41,7 @@ const TweetForm = ({ UserObject }) => {
       text: Tweet,
       createdAt: new Date(),
       creatorId: UserObject.uid,
-      scope: IsPublic,
+      IsPublic,
       attachmentURL,
     };
     await firebaseStore.collection("tweets").add(tweetObject);
@@ -65,7 +65,7 @@ const TweetForm = ({ UserObject }) => {
   };
 
   const onChangeScope = () => {
-    setIsPublic((prev) => !prev);
+    setIsPublic(!IsPublic);
     console.log(IsPublic);
   };
 

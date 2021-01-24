@@ -59,6 +59,7 @@ const TweetPage = ({ isOwner, tweetObject, UserObject }) => {
           <Tweet tweetObject={tweetObject} />
           {isOwner && (
             <TweetOptions
+              tweetObject={tweetObject}
               onDeleteTweet={onDeleteTweet}
               toggleEditing={toggleEditing}
             />

@@ -16,3 +16,13 @@ const Tweet = ({ tweetObject }) => {
 };
 
 export default Tweet;
+
+/*
+  issue 1
+    > 트윗 공개 여부에 따라 메시지 표시 or 비공개 트윗 표시
+      - tweetObject.IsPublic ? tweetObject.text : "비공개 트윗입니다."
+    > 비공개 트윗일 경우 로그인 유저의 uid와 REACT_APP_OWNER_URL의 일치 여부에 따라 트윗 공개 or 비공개
+      - tweetObject.IsPublic === false && UserObject.uid === REACT_APP_OWNER_URL
+      - ? {tweetObject.text}
+      - : {"비공개 트윗입니다."}
+*/

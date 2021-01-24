@@ -200,6 +200,7 @@ form {
   color: rgba(255, 255, 255, 0.5);
   margin-bottom: 1rem;
   font-size: 0.8rem;
+  padding-left: 20px;
 }
 
 .form__scope span {
