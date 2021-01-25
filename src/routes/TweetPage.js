@@ -56,7 +56,7 @@ const TweetPage = ({ isOwner, tweetObject, UserObject }) => {
         />
       ) : (
         <>
-          <Tweet tweetObject={tweetObject} />
+          <Tweet tweetObject={tweetObject} UserObject={UserObject} />
           {isOwner && (
             <TweetOptions
               tweetObject={tweetObject}

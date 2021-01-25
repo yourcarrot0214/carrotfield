@@ -1,15 +1,31 @@
 import React from "react";
 
-const Tweet = ({ tweetObject }) => {
+const Tweet = ({ tweetObject, UserObject }) => {
+  const OWNER_UID = process.env.REACT_APP_OWNER_UID;
+  console.log(OWNER_UID);
   return (
     <>
       <h4 className="nweet__displayName">
         {tweetObject.displayName}
         <span className="nweet__email">{tweetObject.email}</span>
       </h4>
-      <h4 className="nweet__text">{tweetObject.text}</h4>
-      {tweetObject.attachmentURL && (
-        <img src={tweetObject.attachmentURL} alt="첨부이미지" />
+      {tweetObject.IsPublic ? (
+        <>
+          <h4 className="nweet__text">{tweetObject.text}</h4>
+          {tweetObject.attachmentURL && (
+            <img src={tweetObject.attachmentURL} alt="첨부이미지" />
+          )}
+        </>
+      ) : UserObject.uid === "0soACgRb5hNgZHQLjlMcpB4478n2" ||
+        tweetObject.creatorId === UserObject.uid ? (
+        <>
+          <h4 className="nweet__text">{tweetObject.text}</h4>
+          {tweetObject.attachmentURL && (
+            <img src={tweetObject.attachmentURL} alt="첨부이미지" />
+          )}
+        </>
+      ) : (
+        <h4 className="nweet__text private">비공개 게시글 입니다.</h4>
       )}
     </>
   );
