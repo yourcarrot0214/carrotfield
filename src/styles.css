@@ -270,6 +270,10 @@ form {
   margin-right: 10px;
 }
 
+.container.nweetEdit {
+  margin-top: 1rem;
+}
+
 /* Auth */
 
 .authContainer {

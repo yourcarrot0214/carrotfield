@@ -3,6 +3,7 @@ import { firebaseStore, firebaseStorage } from "../Fbase";
 import TweetOptions from "../components/TweetOptions";
 import TweetEditor from "components/TweetEditor";
 import Tweet from "components/Tweet";
+import Reply from "components/options/ReplyTweet";
 
 const TweetPage = ({ isOwner, tweetObject, UserObject }) => {
   // editing mode setup

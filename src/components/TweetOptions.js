@@ -1,12 +1,9 @@
 import React, { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faTrash,
-  faPencilAlt,
-  faLock,
-  faLockOpen,
-} from "@fortawesome/free-solid-svg-icons";
 import { firebaseStore } from "Fbase";
+import ReplyTweet from "./options/ReplyTweet";
+import DeleteTweet from "./options/DeleteTweet";
+import EditTweet from "./options/EditTweet";
+import Scope from "./options/Scope";
 
 function TweetOptions({ tweetObject, onDeleteTweet, toggleEditing }) {
   const [IsPublic, setIsPublic] = useState(tweetObject.IsPublic);
@@ -18,17 +15,21 @@ function TweetOptions({ tweetObject, onDeleteTweet, toggleEditing }) {
   };
   return (
     <div className="nweet__actions">
-      <span onClick={onDeleteTweet}>
-        <FontAwesomeIcon icon={faTrash} />
-      </span>
-      <span onClick={toggleEditing}>
-        <FontAwesomeIcon icon={faPencilAlt} />
-      </span>
-      <span onClick={onChangeScope}>
-        <FontAwesomeIcon icon={IsPublic ? faLockOpen : faLock} />
-      </span>
+      <ReplyTweet />
+      <DeleteTweet onDeleteTweet={onDeleteTweet} />
+      <EditTweet toggleEditing={toggleEditing} />
+      <Scope IsPublic={IsPublic} onChangeScope={onChangeScope} />
     </div>
   );
 }
 
 export default TweetOptions;
+
+/*
+  issue 1. option component 분리
+  > option 역할별 component 분리
+    - <Reply tweetObject={tweetObject} UserObject={UserObject} />
+    - <Delete tweetObject={tweetObject} UserObject={UserObject} />
+    - <Edit tweetObject={tweetObject} UserObject={UserObject} />
+    - <Scope tweetObject={tweetObject} UserObject={UserObject} />
+*/
