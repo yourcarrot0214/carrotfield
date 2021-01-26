@@ -4,6 +4,8 @@ import TweetPage from "./TweetPage";
 import TweetForm from "components/TweetForm";
 
 const Home = ({ UserObject }) => {
+  const OWNER_UID = process.env.REACT_APP_OWNER_UID;
+  const isOwner = UserObject.uid === OWNER_UID;
   const [Tweets, setTweets] = useState([]);
 
   useEffect(() => {
@@ -22,7 +24,7 @@ const Home = ({ UserObject }) => {
         setTweets(tweetArray);
       });
   };
-  console.log(Tweets);
+
   return (
     <div className="container">
       <TweetForm UserObject={UserObject} />
@@ -32,7 +34,8 @@ const Home = ({ UserObject }) => {
           <TweetPage
             key={tweet.id}
             tweetObject={tweet}
-            isOwner={UserObject.uid === tweet.creatorId}
+            isCreator={UserObject.uid === tweet.creatorId}
+            isOwner={isOwner}
             UserObject={UserObject}
           />
         ))}

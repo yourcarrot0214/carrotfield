@@ -3,9 +3,8 @@ import { firebaseStore, firebaseStorage } from "../Fbase";
 import TweetOptions from "../components/TweetOptions";
 import TweetEditor from "components/TweetEditor";
 import Tweet from "components/Tweet";
-import Reply from "components/options/ReplyTweet";
 
-const TweetPage = ({ isOwner, tweetObject, UserObject }) => {
+const TweetPage = ({ isCreator, isOwner, tweetObject, UserObject }) => {
   // editing mode setup
   const [IsEditing, setIsEditing] = useState(false);
   const [NewTweet, setNewTweet] = useState(tweetObject.text);
@@ -58,13 +57,13 @@ const TweetPage = ({ isOwner, tweetObject, UserObject }) => {
       ) : (
         <>
           <Tweet tweetObject={tweetObject} UserObject={UserObject} />
-          {isOwner && (
-            <TweetOptions
-              tweetObject={tweetObject}
-              onDeleteTweet={onDeleteTweet}
-              toggleEditing={toggleEditing}
-            />
-          )}
+          <TweetOptions
+            isOwner={isOwner}
+            isCreator={isCreator}
+            tweetObject={tweetObject}
+            onDeleteTweet={onDeleteTweet}
+            toggleEditing={toggleEditing}
+          />
         </>
       )}
     </div>
@@ -72,10 +71,3 @@ const TweetPage = ({ isOwner, tweetObject, UserObject }) => {
 };
 
 export default TweetPage;
-
-/*
-  - UserObject.email 값이 stylenbs@gmail.com인 user만 열람 가능
-  - user가 tweet을 작성하면 편지함 생성
-  - 편지함 내에 해당 user가 작성한 tweet 출력
-
-*/

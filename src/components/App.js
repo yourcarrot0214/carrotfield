@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import AppRouter from "./Router";
 import { firebaseAuth } from "../Fbase";
 import Loader from "routes/Loader";
-import initialState from "../redux/reduxStore";
 
 function App() {
   const [Init, setInit] = useState(false);
@@ -24,9 +23,6 @@ function App() {
       setInit(true);
     });
   }, []);
-
-  console.log(UserObject);
-  console.log("initialState : ", initialState);
 
   const refreshUser = () => {
     const user = firebaseAuth.currentUser;
