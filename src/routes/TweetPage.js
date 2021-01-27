@@ -4,11 +4,12 @@ import TweetOptions from "../components/TweetOptions";
 import TweetEditor from "components/TweetEditor";
 import Tweet from "components/Tweet";
 import CommentForm from "components/comments/CommentForm";
+import Comment from "components/comments/Comment";
 
 const TweetPage = ({ isCreator, isOwner, tweetObject, UserObject }) => {
   // editing mode setup
   const [IsEditing, setIsEditing] = useState(false);
-  const [CommentMode, setCommentMode] = useState(false);
+  const [CommentToggle, setCommentToggle] = useState(false);
   const [NewTweet, setNewTweet] = useState(tweetObject.text);
 
   useEffect(() => {
@@ -38,8 +39,8 @@ const TweetPage = ({ isCreator, isOwner, tweetObject, UserObject }) => {
   };
 
   // CommentForm에 props로 전달
-  const toggleCommentMode = () => {
-    setCommentMode((prev) => !prev);
+  const toggleComment = () => {
+    setCommentToggle((prev) => !prev);
   };
 
   const onDeleteTweet = async () => {
@@ -70,13 +71,22 @@ const TweetPage = ({ isCreator, isOwner, tweetObject, UserObject }) => {
             tweetObject={tweetObject}
             onDeleteTweet={onDeleteTweet}
             toggleEditing={toggleEditing}
-            toggleCommentMode={toggleCommentMode}
+            toggleComment={toggleComment}
           />
-          {CommentMode && (
+          {CommentToggle &&
+            tweetObject.comments.map((comment) => (
+              <Comment
+                key={comment.id}
+                UserObject={UserObject}
+                tweetObject={tweetObject}
+                comment={comment}
+              />
+            ))}
+          {CommentToggle && (
             <CommentForm
               UserObject={UserObject}
               tweetObject={tweetObject}
-              toggleCommentMode={toggleCommentMode}
+              toggleComment={toggleComment}
             />
           )}
         </>
@@ -86,13 +96,3 @@ const TweetPage = ({ isCreator, isOwner, tweetObject, UserObject }) => {
 };
 
 export default TweetPage;
-
-/*
-  issue 1. 댓글 구조 및 로직
-    > tweetObject.comments.map((comment) => {
-      <Comment commentObject={comment} />
-    })
-
-    > <Comment />
-    > <CommentForm />
-*/

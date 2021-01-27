@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { firebaseStore } from "Fbase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLock, faLockOpen } from "@fortawesome/free-solid-svg-icons";
+import { v4 as uuidv4 } from "uuid";
 
-const CommentForm = ({ UserObject, tweetObject, toggleCommentMode }) => {
+const CommentForm = ({ UserObject, tweetObject, toggleComment }) => {
   const [Comment, setComment] = useState("");
   const [IsPublic, setIsPublic] = useState(true);
 
@@ -29,7 +30,9 @@ const CommentForm = ({ UserObject, tweetObject, toggleCommentMode }) => {
       });
 
     const CommentData = {
+      id: uuidv4(),
       IsPublic: IsPublic,
+      email: UserObject.email,
       displayName: UserObject.displayName,
       text: Comment,
       createdAt: new Date(),
@@ -39,6 +42,8 @@ const CommentForm = ({ UserObject, tweetObject, toggleCommentMode }) => {
     await firebaseStore.doc(DOC_URL).update({
       comments: [...prevCommentData, CommentData],
     });
+    setComment("");
+    // toggle comment form
   };
 
   const onChangeComment = (event) => {
@@ -74,9 +79,6 @@ const CommentForm = ({ UserObject, tweetObject, toggleCommentMode }) => {
           required
         />
         <input type="submit" value="답글달기" className="formBtn" />
-        <span onClick={toggleCommentMode} className="formBtn cancelBtn">
-          Cancle
-        </span>
       </form>
     </>
   );
@@ -85,7 +87,16 @@ const CommentForm = ({ UserObject, tweetObject, toggleCommentMode }) => {
 export default CommentForm;
 
 /*
-    1. 작성자를 알아야 하고 트윗 정보도 알아야 한다.
-        - UserObject, tweetObject
-    2. 입력된 정보는 해당 트윗의 comments로 업데이트가 되어야 한다.
+    issue A. comment 입력 양식 및 업데이트
+        > comment data
+            - id: String, uuidv4()를 통한 임의의 id 생성
+            - IsPublic: Boolean, 공개/비공개 여부
+            - email: String, 작성자 email
+            - displayName: String, 작성자 displayName
+            - text: String, 작성된 comment 내용
+            - createdAt: Date, 작성 시점
+            - creatorId: String, 작성자 uid
+        > update
+            - firebaseStore에서 원글의 데이터를 찾아 comments 배열 정보를 가져온다.
+            - 가져온 정보에 comment data를 추가해 update 한다.
 */

@@ -13,3 +13,10 @@ const Reply = ({ onDeleteTweet }) => {
 };
 
 export default Reply;
+
+/*
+  issue A. props 변경
+    > props로 전달받은 method에 따라 삭제 대상 변경
+      - Tweet 삭제
+      - Tweet.comments 업데이트
+*/
