@@ -11,6 +11,7 @@ function TweetOptions({
   tweetObject,
   onDeleteTweet,
   toggleEditing,
+  toggleCommentMode,
 }) {
   const [IsPublic, setIsPublic] = useState(tweetObject.IsPublic);
   const onChangeScope = async () => {
@@ -21,7 +22,9 @@ function TweetOptions({
   };
   return (
     <div className="nweet__actions">
-      {IsPublic || isCreator || isOwner ? <ReplyTweet /> : null}
+      {IsPublic || isCreator || isOwner ? (
+        <ReplyTweet toggleCommentMode={toggleCommentMode} />
+      ) : null}
       {isCreator ? (
         <>
           <DeleteTweet onDeleteTweet={onDeleteTweet} />
@@ -51,4 +54,11 @@ export default TweetOptions;
       - isCreator ? <EditTweet /> : null
     D. <Scope />
       - isCreator ? <EditTweet /> : null
+
+  issue 2. ReplyTweet 기능 설정
+    > icon 클릭시 comment mode toggle, boolean
+    > comment mode true => comment 입력창 출력
+    > CommentForm component => comment mode에 따라서 출력
+    > commentForm
+      - 입력된 데이터를 원글 트윗의 comments에 업데이트
 */

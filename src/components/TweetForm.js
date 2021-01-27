@@ -41,6 +41,7 @@ const TweetForm = ({ UserObject }) => {
       text: Tweet,
       createdAt: new Date(),
       creatorId: UserObject.uid,
+      comments: [],
       IsPublic,
       attachmentURL,
     };
@@ -66,7 +67,6 @@ const TweetForm = ({ UserObject }) => {
 
   const onChangeScope = () => {
     setIsPublic(!IsPublic);
-    console.log(IsPublic);
   };
 
   return (

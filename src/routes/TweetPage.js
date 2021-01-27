@@ -3,10 +3,12 @@ import { firebaseStore, firebaseStorage } from "../Fbase";
 import TweetOptions from "../components/TweetOptions";
 import TweetEditor from "components/TweetEditor";
 import Tweet from "components/Tweet";
+import CommentForm from "components/comments/CommentForm";
 
 const TweetPage = ({ isCreator, isOwner, tweetObject, UserObject }) => {
   // editing mode setup
   const [IsEditing, setIsEditing] = useState(false);
+  const [CommentMode, setCommentMode] = useState(false);
   const [NewTweet, setNewTweet] = useState(tweetObject.text);
 
   useEffect(() => {
@@ -33,6 +35,11 @@ const TweetPage = ({ isCreator, isOwner, tweetObject, UserObject }) => {
 
   const toggleEditing = () => {
     setIsEditing((prev) => !prev);
+  };
+
+  // CommentForm에 props로 전달
+  const toggleCommentMode = () => {
+    setCommentMode((prev) => !prev);
   };
 
   const onDeleteTweet = async () => {
@@ -63,7 +70,15 @@ const TweetPage = ({ isCreator, isOwner, tweetObject, UserObject }) => {
             tweetObject={tweetObject}
             onDeleteTweet={onDeleteTweet}
             toggleEditing={toggleEditing}
+            toggleCommentMode={toggleCommentMode}
           />
+          {CommentMode && (
+            <CommentForm
+              UserObject={UserObject}
+              tweetObject={tweetObject}
+              toggleCommentMode={toggleCommentMode}
+            />
+          )}
         </>
       )}
     </div>
@@ -71,3 +86,13 @@ const TweetPage = ({ isCreator, isOwner, tweetObject, UserObject }) => {
 };
 
 export default TweetPage;
+
+/*
+  issue 1. 댓글 구조 및 로직
+    > tweetObject.comments.map((comment) => {
+      <Comment commentObject={comment} />
+    })
+
+    > <Comment />
+    > <CommentForm />
+*/

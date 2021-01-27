@@ -149,6 +149,7 @@ form {
   border-radius: 20px;
   font-weight: 500;
   font-size: 12px;
+  margin-top: 1rem;
 }
 
 .factoryInput__arrow {
@@ -198,7 +199,7 @@ form {
 
 .form__scope {
   color: rgba(255, 255, 255, 0.5);
-  margin-bottom: 1rem;
+  margin-top: 1rem;
   font-size: 0.8rem;
   padding-left: 20px;
 }
