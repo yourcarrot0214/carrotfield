@@ -4,17 +4,24 @@ import TweetOptions from "../components/TweetOptions";
 import TweetEditor from "components/TweetEditor";
 import Tweet from "components/Tweet";
 import CommentForm from "components/comments/CommentForm";
-import Comment from "components/comments/Comment";
+import CommentPage from "./CommentPage";
 
 const TweetPage = ({ isCreator, isOwner, tweetObject, UserObject }) => {
-  // editing mode setup
-  const [IsEditing, setIsEditing] = useState(false);
-  const [CommentToggle, setCommentToggle] = useState(false);
-  const [NewTweet, setNewTweet] = useState(tweetObject.text);
-
   useEffect(() => {
     onUpdateDisplayName();
   });
+
+  const [IsEditing, setIsEditing] = useState(false);
+  const [CommentToggle, setCommentToggle] = useState(false);
+  const [NewTweet, setNewTweet] = useState(tweetObject.text);
+  const [IsPublic, setIsPublic] = useState(tweetObject.IsPublic);
+
+  const onChangeScope = async () => {
+    setIsPublic(!IsPublic);
+    await firebaseStore.doc(`tweets/${tweetObject.id}`).update({
+      IsPublic: !IsPublic,
+    });
+  };
 
   const onUpdateDisplayName = () => {
     firebaseStore
@@ -72,16 +79,16 @@ const TweetPage = ({ isCreator, isOwner, tweetObject, UserObject }) => {
             onDeleteTweet={onDeleteTweet}
             toggleEditing={toggleEditing}
             toggleComment={toggleComment}
+            onChangeScope={onChangeScope}
+            IsPublic={IsPublic}
           />
-          {CommentToggle &&
-            tweetObject.comments.map((comment) => (
-              <Comment
-                key={comment.id}
-                UserObject={UserObject}
-                tweetObject={tweetObject}
-                comment={comment}
-              />
-            ))}
+          {CommentToggle && (
+            <CommentPage
+              tweetObject={tweetObject}
+              commentObject={tweetObject.comments}
+              UserObject={UserObject}
+            />
+          )}
           {CommentToggle && (
             <CommentForm
               UserObject={UserObject}
@@ -96,3 +103,9 @@ const TweetPage = ({ isCreator, isOwner, tweetObject, UserObject }) => {
 };
 
 export default TweetPage;
+
+/*
+  issue A. <CommentPage /> key prop.
+    > 고유 id를 가지고 있지 않은 상황.
+    > 대체할 수 있는 방안이 필요.
+*/

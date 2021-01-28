@@ -162,6 +162,7 @@ form {
   text-align: center;
   border-radius: 20px;
   color: white;
+  margin-top: 1rem;
 }
 
 .factoryInput__label {

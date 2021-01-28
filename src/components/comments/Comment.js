@@ -1,7 +1,12 @@
 import React from "react";
+import DeleteOption from "components/options/DeleteOption";
+import EditOption from "components/options/EditOption";
+import ScopeOption from "components/options/ScopeOption";
+
+const PRIVATE_COMMENT = "비공개 댓글 입니다.";
 
 const Comment = ({ UserObject, tweetObject, comment }) => {
-  const PRIVATE_COMMENT = "비공개 댓글 입니다.";
+  const isCommentWriter = UserObject.uid === comment.creatorId;
   return (
     <div className="nweet">
       <h4 className="nweet__displayName">
@@ -15,6 +20,13 @@ const Comment = ({ UserObject, tweetObject, comment }) => {
         <h4 className="nweet__text">{comment.text}</h4>
       ) : (
         <h4 className="nweet__text private">{PRIVATE_COMMENT}</h4>
+      )}
+      {isCommentWriter && (
+        <div className="nweet__actions">
+          <DeleteOption />
+          <EditOption />
+          <ScopeOption IsPublic={comment.IsPublic} />
+        </div>
       )}
     </div>
   );

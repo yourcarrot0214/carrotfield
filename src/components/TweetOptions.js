@@ -12,14 +12,9 @@ function TweetOptions({
   onDeleteTweet,
   toggleEditing,
   toggleComment,
+  onChangeScope,
+  IsPublic,
 }) {
-  const [IsPublic, setIsPublic] = useState(tweetObject.IsPublic);
-  const onChangeScope = async () => {
-    setIsPublic(!IsPublic);
-    await firebaseStore.doc(`tweets/${tweetObject.id}`).update({
-      IsPublic: !IsPublic,
-    });
-  };
   return (
     <div className="nweet__actions">
       {IsPublic || isCreator || isOwner ? (
