@@ -2,7 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faComments } from "@fortawesome/free-solid-svg-icons";
 
-const ReplyTweet = ({ commentsLength, toggleComment }) => {
+const ReplyOption = ({ commentsLength, toggleComment }) => {
   return (
     <>
       <span onClick={toggleComment}>
@@ -12,7 +12,7 @@ const ReplyTweet = ({ commentsLength, toggleComment }) => {
   );
 };
 
-export default ReplyTweet;
+export default ReplyOption;
 
 /*
   issue 1. ReplyTweet 기능 설정

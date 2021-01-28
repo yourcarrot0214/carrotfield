@@ -34,4 +34,5 @@ export default Comment;
     issue B. TweetOptions 연결
         > 댓글에 대한 options component 연결
             - options component 기능 수정 후 연결
+            - Delete, Edit, Scope options component
 */

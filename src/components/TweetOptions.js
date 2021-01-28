@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { firebaseStore } from "Fbase";
-import ReplyTweet from "./options/ReplyTweet";
-import DeleteTweet from "./options/DeleteTweet";
-import EditTweet from "./options/EditTweet";
-import Scope from "./options/Scope";
+import ReplyOption from "./options/ReplyOption";
+import DeleteOption from "./options/DeleteOption";
+import EditOption from "./options/EditOption";
+import ScopeOption from "./options/ScopeOption";
 
 function TweetOptions({
   isCreator,
@@ -23,16 +23,16 @@ function TweetOptions({
   return (
     <div className="nweet__actions">
       {IsPublic || isCreator || isOwner ? (
-        <ReplyTweet
+        <ReplyOption
           commentsLength={tweetObject.comments.length}
           toggleComment={toggleComment}
         />
       ) : null}
       {isCreator ? (
         <>
-          <DeleteTweet onDeleteTweet={onDeleteTweet} />
-          <EditTweet toggleEditing={toggleEditing} />
-          <Scope IsPublic={IsPublic} onChangeScope={onChangeScope} />
+          <DeleteOption onDeleteTweet={onDeleteTweet} />
+          <EditOption toggleEditing={toggleEditing} />
+          <ScopeOption IsPublic={IsPublic} onChangeScope={onChangeScope} />
         </>
       ) : null}
     </div>

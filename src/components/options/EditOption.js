@@ -2,7 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 
-const EditTweet = ({ toggleEditing }) => {
+const EditOption = ({ toggleEditing }) => {
   return (
     <>
       <span onClick={toggleEditing}>
@@ -12,7 +12,7 @@ const EditTweet = ({ toggleEditing }) => {
   );
 };
 
-export default EditTweet;
+export default EditOption;
 
 /*
   issue A. props 변경

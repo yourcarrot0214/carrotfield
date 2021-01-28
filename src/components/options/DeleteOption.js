@@ -2,7 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
-const Reply = ({ onDeleteTweet }) => {
+const DeleteOption = ({ onDeleteTweet }) => {
   return (
     <>
       <span onClick={onDeleteTweet}>
@@ -12,7 +12,7 @@ const Reply = ({ onDeleteTweet }) => {
   );
 };
 
-export default Reply;
+export default DeleteOption;
 
 /*
   issue A. props 변경
