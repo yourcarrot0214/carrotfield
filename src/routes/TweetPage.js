@@ -8,7 +8,7 @@ import CommentPage from "./CommentPage";
 
 const TweetPage = ({ isCreator, isOwner, tweetObject, UserObject }) => {
   useEffect(() => {
-    onUpdateDisplayName();
+    onUpdateDisplayName("tweets");
   });
 
   const [IsEditing, setIsEditing] = useState(false);
@@ -23,9 +23,9 @@ const TweetPage = ({ isCreator, isOwner, tweetObject, UserObject }) => {
     });
   };
 
-  const onUpdateDisplayName = () => {
+  const onUpdateDisplayName = (COLLECTION_NAME) => {
     firebaseStore
-      .collection("tweets")
+      .collection(COLLECTION_NAME)
       .where("creatorId", "==", UserObject.uid)
       .get()
       .then((snapshot) => {
@@ -34,7 +34,7 @@ const TweetPage = ({ isCreator, isOwner, tweetObject, UserObject }) => {
           return;
         }
         snapshot.forEach((doc) => {
-          firebaseStore.collection("tweets").doc(doc.id).update({
+          firebaseStore.collection(COLLECTION_NAME).doc(doc.id).update({
             displayName: UserObject.displayName,
           });
         });
@@ -83,7 +83,11 @@ const TweetPage = ({ isCreator, isOwner, tweetObject, UserObject }) => {
             IsPublic={IsPublic}
           />
           {CommentToggle && (
-            <CommentPage tweetObject={tweetObject} UserObject={UserObject} />
+            <CommentPage
+              tweetObject={tweetObject}
+              UserObject={UserObject}
+              onUpdateDisplayName={onUpdateDisplayName}
+            />
           )}
           {CommentToggle && (
             <CommentForm
@@ -99,10 +103,3 @@ const TweetPage = ({ isCreator, isOwner, tweetObject, UserObject }) => {
 };
 
 export default TweetPage;
-
-/*
-  issue A. Comment 구조 변경
-    > tweet.id === comment.responseTo
-      - tweetpage에 commentpage를 연결하고
-      - commentpage에서 위 조건에 맞는 comment를 가져와서 comment 출력
-*/

@@ -47,10 +47,3 @@ const Home = ({ UserObject }) => {
 };
 
 export default Home;
-
-/*
-  issue 1. 댓글
-    > tweet 한개당 tweetPage가 생성 된다.
-    > tweetpage가 생성될 때 해당 tweet에 댓글이 있으면 같이 출력된다.
-    > 댓글을 달면 해당 tweet에 comments 배열 안에 댓글을 넣어서 관리한다.? ㅇㅋ?
-*/
