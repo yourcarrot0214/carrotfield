@@ -11,37 +11,18 @@ const CommentForm = ({ UserObject, tweetObject, toggleComment }) => {
   const onSubmitComment = async (event) => {
     event.preventDefault();
 
-    // comment data setup
-    const DOC_URL = `tweets/${tweetObject.id}`;
-    const prevCommentData = await firebaseStore
-      .collection("tweets")
-      .doc(tweetObject.id)
-      .get()
-      .then((doc) => {
-        if (doc.empty) {
-          console.log("No matching documents.");
-          return;
-        } else {
-          return doc.data().comments;
-        }
-      })
-      .catch((error) => {
-        console.log("Error getting document : ", error);
-      });
-
-    const CommentData = {
-      id: uuidv4(),
-      IsPublic: IsPublic,
+    const commentObject = {
       email: UserObject.email,
       displayName: UserObject.displayName,
       text: Comment,
       createdAt: new Date(),
       creatorId: UserObject.uid,
+      IsPublic,
+      responseTo: tweetObject.id,
     };
 
-    await firebaseStore.doc(DOC_URL).update({
-      comments: [...prevCommentData, CommentData],
-    });
+    await firebaseStore.collection("comments").add(commentObject);
+
     setComment("");
     // toggle comment form
   };
@@ -87,16 +68,24 @@ const CommentForm = ({ UserObject, tweetObject, toggleComment }) => {
 export default CommentForm;
 
 /*
-    issue A. comment 입력 양식 및 업데이트
-        > comment data
-            - id: String, uuidv4()를 통한 임의의 id 생성
-            - IsPublic: Boolean, 공개/비공개 여부
-            - email: String, 작성자 email
-            - displayName: String, 작성자 displayName
-            - text: String, 작성된 comment 내용
-            - createdAt: Date, 작성 시점
-            - creatorId: String, 작성자 uid
-        > update
-            - firebaseStore에서 원글의 데이터를 찾아 comments 배열 정보를 가져온다.
-            - 가져온 정보에 comment data를 추가해 update 한다.
+  issue A. comment 입력 양식 및 업데이트
+    > comment data
+      - id: String, uuidv4()를 통한 임의의 id 생성
+      - IsPublic: Boolean, 공개/비공개 여부
+      - email: String, 작성자 email
+      - displayName: String, 작성자 displayName
+      - text: String, 작성된 comment 내용
+      - createdAt: Date, 작성 시점
+      - creatorId: String, 작성자 uid
+    > update
+      - firebaseStore에서 원글의 데이터를 찾아 comments 배열 정보를 가져온다.
+      - 가져온 정보에 comment data를 추가해 update 한다.
+    
+  issue B. comment 구조 재구성
+    > 문제점: comment 등록, 업데이트, 삭제가 복잡함.
+      - tweet doc의 내부 필드값으로 comment를 관리하기가 어려움.
+    > 해결방안 : comment doc를 새로 만들고 comment를 관리
+      - comment정보와 tweet 정보를 매칭시킬 기능 구현
+        - tweet.id === comment.responseTo matching
+      - 등록(add), 업데이트(update), 삭제(delete)로 각각 하나의 기능을 수행하는 method 구성
 */

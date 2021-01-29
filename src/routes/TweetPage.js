@@ -83,11 +83,7 @@ const TweetPage = ({ isCreator, isOwner, tweetObject, UserObject }) => {
             IsPublic={IsPublic}
           />
           {CommentToggle && (
-            <CommentPage
-              tweetObject={tweetObject}
-              commentObject={tweetObject.comments}
-              UserObject={UserObject}
-            />
+            <CommentPage tweetObject={tweetObject} UserObject={UserObject} />
           )}
           {CommentToggle && (
             <CommentForm
@@ -105,7 +101,8 @@ const TweetPage = ({ isCreator, isOwner, tweetObject, UserObject }) => {
 export default TweetPage;
 
 /*
-  issue A. <CommentPage /> key prop.
-    > 고유 id를 가지고 있지 않은 상황.
-    > 대체할 수 있는 방안이 필요.
+  issue A. Comment 구조 변경
+    > tweet.id === comment.responseTo
+      - tweetpage에 commentpage를 연결하고
+      - commentpage에서 위 조건에 맞는 comment를 가져와서 comment 출력
 */

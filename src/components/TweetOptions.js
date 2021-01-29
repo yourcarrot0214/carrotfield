@@ -18,10 +18,7 @@ function TweetOptions({
   return (
     <div className="nweet__actions">
       {IsPublic || isCreator || isOwner ? (
-        <ReplyOption
-          commentsLength={tweetObject.comments.length}
-          toggleComment={toggleComment}
-        />
+        <ReplyOption toggleComment={toggleComment} />
       ) : null}
       {isCreator ? (
         <>

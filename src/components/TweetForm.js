@@ -41,7 +41,6 @@ const TweetForm = ({ UserObject }) => {
       text: Tweet,
       createdAt: new Date(),
       creatorId: UserObject.uid,
-      comments: [],
       IsPublic,
       attachmentURL,
     };
