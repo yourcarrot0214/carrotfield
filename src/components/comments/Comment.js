@@ -1,12 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import DeleteOption from "components/options/DeleteOption";
 import EditOption from "components/options/EditOption";
 import ScopeOption from "components/options/ScopeOption";
+import { firebaseStore } from "Fbase";
 
 const PRIVATE_COMMENT = "비공개 댓글 입니다.";
 
-const Comment = ({ UserObject, tweetObject, comment }) => {
-  const isCommentWriter = UserObject.uid === comment.creatorId;
+const Comment = ({ UserObject, tweetObject, commentObject }) => {
+  const isCommentWriter = UserObject.uid === commentObject.creatorId;
+  const [comment, setComment] = useState(commentObject);
+
+  const onDeleteComment = async () => {
+    const check = window.confirm("댓글을 삭제하시겠습니까?");
+    if (check) {
+      await firebaseStore.doc(`comments/${comment.id}`).delete();
+    }
+  };
+
   return (
     <div className="nweet">
       <h4 className="nweet__displayName">
@@ -23,7 +33,7 @@ const Comment = ({ UserObject, tweetObject, comment }) => {
       )}
       {isCommentWriter && (
         <div className="nweet__actions">
-          <DeleteOption />
+          <DeleteOption onDeleteTweet={onDeleteComment} />
           <EditOption />
           <ScopeOption IsPublic={comment.IsPublic} />
         </div>
