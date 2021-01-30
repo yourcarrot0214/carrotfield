@@ -5,23 +5,24 @@ import TweetEditor from "components/TweetEditor";
 import Tweet from "components/Tweet";
 import CommentForm from "components/comments/CommentForm";
 import CommentPage from "./CommentPage";
+import Comment from "components/comments/Comment";
 
-const TweetPage = ({ isCreator, isOwner, tweetObject, UserObject }) => {
+const TweetPage = ({
+  isCreator,
+  isOwner,
+  tweetObject,
+  commentsObject,
+  UserObject,
+}) => {
   useEffect(() => {
     onUpdateDisplayName("tweets");
+    onUpdateDisplayName("comments");
   });
 
   const [IsEditing, setIsEditing] = useState(false);
   const [CommentToggle, setCommentToggle] = useState(false);
   const [NewTweet, setNewTweet] = useState(tweetObject.text);
   const [IsPublic, setIsPublic] = useState(tweetObject.IsPublic);
-
-  const onChangeScope = async () => {
-    setIsPublic(!IsPublic);
-    await firebaseStore.doc(`tweets/${tweetObject.id}`).update({
-      IsPublic: !IsPublic,
-    });
-  };
 
   const onUpdateDisplayName = (COLLECTION_NAME) => {
     firebaseStore
@@ -39,6 +40,13 @@ const TweetPage = ({ isCreator, isOwner, tweetObject, UserObject }) => {
           });
         });
       });
+  };
+
+  const onChangeScope = async () => {
+    setIsPublic(!IsPublic);
+    await firebaseStore.doc(`tweets/${tweetObject.id}`).update({
+      IsPublic: !IsPublic,
+    });
   };
 
   const toggleEditing = () => {
@@ -82,13 +90,15 @@ const TweetPage = ({ isCreator, isOwner, tweetObject, UserObject }) => {
             onChangeScope={onChangeScope}
             IsPublic={IsPublic}
           />
-          {CommentToggle && (
-            <CommentPage
-              tweetObject={tweetObject}
-              UserObject={UserObject}
-              onUpdateDisplayName={onUpdateDisplayName}
-            />
-          )}
+          {CommentToggle &&
+            commentsObject.map((comment) => (
+              <Comment
+                key={comment.id}
+                UserObject={UserObject}
+                tweetObject={tweetObject}
+                commentObject={comment}
+              />
+            ))}
           {CommentToggle && (
             <CommentForm
               UserObject={UserObject}
@@ -103,3 +113,16 @@ const TweetPage = ({ isCreator, isOwner, tweetObject, UserObject }) => {
 };
 
 export default TweetPage;
+
+/*
+            <CommentPage
+              tweetObject={tweetObject}
+              commentsObject={commentsObject}
+              UserObject={UserObject}
+              onUpdateDisplayName={onUpdateDisplayName}
+            />
+*/
+
+/*
+  Tweet update랑 Commenet update랑 logic 비교할것.
+*/

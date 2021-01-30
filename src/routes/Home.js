@@ -7,25 +7,42 @@ const Home = ({ UserObject }) => {
   const OWNER_UID = process.env.REACT_APP_OWNER_UID;
   const isOwner = UserObject.uid === OWNER_UID;
   const [Tweets, setTweets] = useState([]);
+  const [Comments, setComments] = useState([]);
 
   useEffect(() => {
+    const onTweetListener = () => {
+      firebaseStore
+        .collection("tweets")
+        .orderBy("createdAt", "desc")
+        .onSnapshot((snapshot) => {
+          const tweetArray = snapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+          }));
+          setTweets(tweetArray);
+        });
+      console.log("tweet listener");
+    };
+
+    const onCommentListener = () => {
+      firebaseStore
+        .collection("comments")
+        .orderBy("createdAt", "asc")
+        .onSnapshot((snapshot) => {
+          const commentsArray = snapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+          }));
+          setComments(commentsArray);
+        });
+      console.log("comment listener");
+    };
+
     onTweetListener();
+    onCommentListener();
   }, []);
 
-  const onTweetListener = () => {
-    firebaseStore
-      .collection("tweets")
-      .orderBy("createdAt", "desc")
-      .onSnapshot((snapshot) => {
-        const tweetArray = snapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        setTweets(tweetArray);
-      });
-  };
-
-  console.log(Tweets);
+  console.log("Comments : ", Comments);
 
   return (
     <div className="container">
@@ -39,6 +56,9 @@ const Home = ({ UserObject }) => {
             isCreator={UserObject.uid === tweet.creatorId}
             isOwner={isOwner}
             UserObject={UserObject}
+            commentsObject={Comments.filter(
+              (comment) => comment.responseTo === tweet.id
+            )}
           />
         ))}
       </div>

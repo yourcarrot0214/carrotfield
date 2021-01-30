@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { firebaseAuth, firebaseStorage } from "../Fbase";
+import { firebaseAuth, firebaseStorage, firebaseStore } from "../Fbase";
 import { useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faUserCircle } from "@fortawesome/free-solid-svg-icons";

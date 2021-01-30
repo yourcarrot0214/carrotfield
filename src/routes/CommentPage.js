@@ -1,37 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Comment from "components/comments/Comment";
-import { firebaseStore } from "Fbase";
 
-const CommentPage = ({ UserObject, tweetObject, onUpdateDisplayName }) => {
-  useEffect(() => {
-    onCommentListener();
-    onUpdateDisplayName("comments");
-  }, []);
-
-  const [Comments, setComments] = useState([]);
-
-  const onCommentListener = () => {
-    firebaseStore
-      .collection("comments")
-      .orderBy("createdAt")
-      .onSnapshot((snapshot) => {
-        const commentsArray = snapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-
-        const responseComments = commentsArray.filter(
-          (doc) => doc.responseTo === tweetObject.id
-        );
-
-        setComments(responseComments);
-      });
-  };
-
-  console.log(Comments);
+const CommentPage = ({ UserObject, tweetObject, commentsObject }) => {
   return (
     <>
-      {Comments.map((comment) => (
+      {commentsObject.map((comment) => (
         <Comment
           key={comment.id}
           UserObject={UserObject}
