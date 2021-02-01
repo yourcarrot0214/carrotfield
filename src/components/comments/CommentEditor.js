@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { firebaseStore } from "Fbase";
 
 const CommentEditor = ({
@@ -18,7 +18,7 @@ const CommentEditor = ({
 
   const onEditingComment = (event) => {
     const { value } = event.target;
-    setNewComment((prev) => (prev = value));
+    setNewComment(value);
   };
 
   return (

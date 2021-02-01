@@ -9,9 +9,8 @@ const PRIVATE_COMMENT = "비공개 댓글 입니다.";
 
 const Comment = ({ UserObject, tweetObject, commentObject }) => {
   const isCommentWriter = UserObject.uid === commentObject.creatorId;
-  const [comment, setComment] = useState(commentObject);
   const [CommentEditMode, setCommentEditMode] = useState(false);
-  const [NewComment, setNewComment] = useState(comment.text);
+  const [NewComment, setNewComment] = useState(commentObject.text);
 
   const onToggleCommentEditMode = () => {
     setCommentEditMode((prev) => !prev);
@@ -21,7 +20,7 @@ const Comment = ({ UserObject, tweetObject, commentObject }) => {
   const onDeleteComment = async () => {
     const check = window.confirm("댓글을 삭제하시겠습니까?");
     if (check) {
-      await firebaseStore.doc(`comments/${comment.id}`).delete();
+      await firebaseStore.doc(`comments/${commentObject.id}`).delete();
     }
   };
 
@@ -29,7 +28,7 @@ const Comment = ({ UserObject, tweetObject, commentObject }) => {
     <div className="nweet">
       {CommentEditMode ? (
         <CommentEditor
-          comment={comment}
+          comment={commentObject}
           onToggleCommentEditMode={onToggleCommentEditMode}
           NewComment={NewComment}
           setNewComment={setNewComment}
@@ -37,14 +36,14 @@ const Comment = ({ UserObject, tweetObject, commentObject }) => {
       ) : (
         <>
           <h4 className="nweet__displayName">
-            {comment.displayName}
-            <span className="nweet__email">{comment.email}</span>
+            {commentObject.displayName}
+            <span className="nweet__email">{commentObject.email}</span>
           </h4>
-          {comment.IsPublic ? (
-            <h4 className="nweet__text">{comment.text}</h4>
-          ) : UserObject.uid === comment.creatorId ||
+          {commentObject.IsPublic ? (
+            <h4 className="nweet__text">{commentObject.text}</h4>
+          ) : UserObject.uid === commentObject.creatorId ||
             tweetObject.creatorId === UserObject.uid ? (
-            <h4 className="nweet__text">{comment.text}</h4>
+            <h4 className="nweet__text">{commentObject.text}</h4>
           ) : (
             <h4 className="nweet__text private">{PRIVATE_COMMENT}</h4>
           )}
@@ -52,7 +51,7 @@ const Comment = ({ UserObject, tweetObject, commentObject }) => {
             <div className="nweet__actions">
               <DeleteOption onDeleteTweet={onDeleteComment} />
               <EditOption toggleEditing={onToggleCommentEditMode} />
-              <ScopeOption IsPublic={comment.IsPublic} />
+              <ScopeOption IsPublic={commentObject.IsPublic} />
             </div>
           )}
         </>
