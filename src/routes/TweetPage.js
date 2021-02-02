@@ -98,6 +98,9 @@ const TweetPage = ({
             onChangeScope={onChangeScope}
             IsPublic={IsPublic}
           />
+          {isCreator && commentsObject.length > 0 && (
+            <div className="notice">{`${commentsObject.length}개의 댓글이 있습니다 :)`}</div>
+          )}
           {CommentToggle &&
             commentsObject.map((comment) => (
               <Comment
