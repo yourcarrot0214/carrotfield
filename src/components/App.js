@@ -36,7 +36,7 @@ function App() {
   };
 
   return (
-    <>
+    <div className="app__container">
       {Init ? (
         <AppRouter
           IsLoggedIn={Boolean(UserObject)}
@@ -46,10 +46,8 @@ function App() {
       ) : (
         <Loader />
       )}
-      <footer style={{ textAlign: "center", marginTop: "2rem" }}>
-        &copy; Carrot Field {new Date().getFullYear()}
-      </footer>
-    </>
+      <footer>&copy; Carrot Field {new Date().getFullYear()}</footer>
+    </div>
   );
 }
 

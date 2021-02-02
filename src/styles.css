@@ -32,9 +32,33 @@ form {
   width: 100%;
 }
 
+footer {
+  text-align: center;
+  margin-top: 2rem;
+}
+
 .nweet-input::placeholder {
   color: white;
   opacity: 0.9;
+}
+
+.app__container {
+  width: 100%;
+  max-width: 360px;
+  margin: 2rem auto;
+  padding-bottom: 1rem;
+  border-radius: 25px;
+  background: linear-gradient(145deg, #071b37, #06172e);
+  box-shadow: 5px 5px 8px #030a14, -5px -5px 8px #0b2852;
+}
+
+.router__container {
+  max-width: 890px;
+  min-height: 1vh;
+  width: 100%;
+  margin: 2rem 0 auto;
+  display: flex;
+  justify-content: center;
 }
 
 .container {
@@ -80,7 +104,7 @@ form {
 .nav__container {
   display: flex;
   justify-content: center;
-  margin-top: 50px;
+  padding-top: 2rem;
   align-items: baseline;
 }
 

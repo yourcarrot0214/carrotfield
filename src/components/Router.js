@@ -12,16 +12,7 @@ const AppRouter = ({ IsLoggedIn, UserObject, refreshUser }) => {
       <Switch>
         {IsLoggedIn ? (
           <>
-            <div
-              style={{
-                maxWidth: 890,
-                width: "100%",
-                margin: "0 auto",
-                marginTop: 80,
-                display: "flex",
-                justifyContent: "center",
-              }}
-            >
+            <div className="router__container">
               <Route exact path="/">
                 <Home UserObject={UserObject} />
               </Route>
