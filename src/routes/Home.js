@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { firebaseStore } from "../Fbase";
 import TweetPage from "./TweetPage";
 import TweetForm from "components/TweetForm";
+import PropTypes from "prop-types";
 
 const Home = ({ UserObject }) => {
   const OWNER_UID = process.env.REACT_APP_OWNER_UID;
@@ -42,7 +43,7 @@ const Home = ({ UserObject }) => {
     onCommentListener();
   }, []);
 
-  console.log("Comments : ", Comments);
+  console.log(UserObject);
 
   return (
     <div className="container">
@@ -67,3 +68,7 @@ const Home = ({ UserObject }) => {
 };
 
 export default Home;
+
+Home.propTypes = {
+  UserObject: PropTypes.object,
+};

@@ -14,7 +14,6 @@ const Comment = ({ UserObject, tweetObject, commentObject }) => {
 
   const onToggleCommentEditMode = () => {
     setCommentEditMode((prev) => !prev);
-    console.log(CommentEditMode);
   };
 
   const onDeleteComment = async () => {

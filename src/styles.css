@@ -168,6 +168,7 @@ form {
 .factoryInput__label {
   color: #04aaff;
   cursor: pointer;
+  margin-top: 10px;
 }
 
 .factoryInput__label span {

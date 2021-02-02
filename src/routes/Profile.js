@@ -19,6 +19,7 @@ const Profile = ({ UserObject, refreshUser }) => {
     // onChangeDisplayName
     if (UserObject.displayName !== NewDisplayName) {
       await UserObject.updateProfile({
+        ...UserObject,
         displayName: NewDisplayName,
       });
       refreshUser();
@@ -37,6 +38,7 @@ const Profile = ({ UserObject, refreshUser }) => {
       profileImageURL = await response.ref.getDownloadURL();
       // update
       await UserObject.updateProfile({
+        ...UserObject,
         photoURL: profileImageURL,
       });
       refreshUser();
@@ -106,7 +108,7 @@ const Profile = ({ UserObject, refreshUser }) => {
 export default Profile;
 
 /*
-  onSubmit function > update profile으로 통합
-  displayName 변경시 updateDisplayName()
-  photoURL 변경시 updatePhotoURL()
+  issue A. displayName 업데이트시 UserObject의 email 값이 사라짐.
+    > 이후 tweet 작성시 field value undefined error 발생.
+      - App.js > refreshUser method의 setUserObject에 email값 추가.
 */

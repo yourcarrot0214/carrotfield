@@ -28,6 +28,7 @@ function App() {
     const user = firebaseAuth.currentUser;
     setUserObject({
       displayName: user.displayName,
+      email: user.email,
       uid: user.uid,
       photoURL: user.photoURL,
       updateProfile: (args) => user.updateProfile(args),

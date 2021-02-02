@@ -13,6 +13,7 @@ const TweetForm = ({ UserObject }) => {
   const [Tweet, setTweet] = useState("");
   const [AttachmentImage, setAttachmentImage] = useState("");
   const [IsPublic, setIsPublic] = useState(true);
+  const [ErrorMessage, setErrorMessage] = useState("");
   const onTweet = (event) => {
     const { value } = event.target;
     setTweet(value);
@@ -21,6 +22,10 @@ const TweetForm = ({ UserObject }) => {
   const onSubmit = async (event) => {
     event.preventDefault();
     if (Tweet === "") return;
+    if (UserObject.displayName === null) {
+      setErrorMessage("프로필에서 닉네임 혹은 실명을 등록해 주세요.");
+      return;
+    }
     // attachment image upload
     let attachmentURL = "";
 
@@ -88,13 +93,14 @@ const TweetForm = ({ UserObject }) => {
           <input
             className="factoryInput__input"
             type="text"
-            placeholder="무슨 일이 일어나고 있나요?"
+            placeholder="프로필에서 실명을 업데이트 후 이용해주세요."
             onChange={onTweet}
             maxLength={120}
             value={Tweet}
           />
           <input type="submit" value="&rarr;" className="factoryInput__arrow" />
         </div>
+        {ErrorMessage && <span className="authError">{ErrorMessage}</span>}
         <label htmlFor="attach-file" className="factoryInput__label">
           <span>Add photos</span>
           <FontAwesomeIcon icon={faPlus} />

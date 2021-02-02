@@ -60,8 +60,16 @@ const TweetPage = ({
 
   const onDeleteTweet = async () => {
     const check = window.confirm("정말 삭제하시겠습니까?");
+    const tweetComments = commentsObject.filter(
+      (comment) => comment.responseTo === tweetObject.id
+    );
     if (check) {
       await firebaseStore.doc(`tweets/${tweetObject.id}`).delete();
+      if (tweetComments) {
+        for (let i = 0; i < tweetComments.length; i++) {
+          await firebaseStore.doc(`comments/${tweetComments[i].id}`).delete();
+        }
+      }
       if (tweetObject.attachmentURL)
         await firebaseStorage.refFromURL(tweetObject.attachmentURL).delete();
     }
@@ -115,14 +123,7 @@ const TweetPage = ({
 export default TweetPage;
 
 /*
-            <CommentPage
-              tweetObject={tweetObject}
-              commentsObject={commentsObject}
-              UserObject={UserObject}
-              onUpdateDisplayName={onUpdateDisplayName}
-            />
-*/
-
-/*
-  Tweet update랑 Commenet update랑 logic 비교할것.
-*/
+  issue A. 게시글 삭제시 댓글 삭제
+    > 게시글 삭제시 해당 게시글에 있는 댓글을 같이 삭제
+      - onDeleteTweet method에 logic 추가
+ */

@@ -10,7 +10,7 @@ const AuthForm = () => {
 
   const onSubmit = async (event) => {
     event.preventDefault();
-    if (Password !== PasswordCheck) {
+    if (NewAccount && Password !== PasswordCheck) {
       setErrorMessage("비밀번호가 일치하지 않습니다.");
       return;
     }
