@@ -9,11 +9,21 @@ import {
   faLockOpen,
 } from "@fortawesome/free-solid-svg-icons";
 
+const welcomeMessage = [
+  "오늘 하루 어땠나요?",
+  "잘 지내고 계시죠?",
+  "좋은 하루 되세요!",
+  "만나서 반갑습니다 :)",
+];
+
 const TweetForm = ({ UserObject }) => {
   const [Tweet, setTweet] = useState("");
   const [AttachmentImage, setAttachmentImage] = useState("");
   const [IsPublic, setIsPublic] = useState(true);
   const [ErrorMessage, setErrorMessage] = useState("");
+  const PLACEHOLDER = UserObject.displayName
+    ? `${welcomeMessage[Math.floor(Math.random() * welcomeMessage.length)]}`
+    : "프로필에서 실명을 업데이트 후 이용해주세요.";
   const onTweet = (event) => {
     const { value } = event.target;
     setTweet(value);
@@ -93,7 +103,7 @@ const TweetForm = ({ UserObject }) => {
           <input
             className="factoryInput__input"
             type="text"
-            placeholder="프로필에서 실명을 업데이트 후 이용해주세요."
+            placeholder={PLACEHOLDER}
             onChange={onTweet}
             maxLength={120}
             value={Tweet}
