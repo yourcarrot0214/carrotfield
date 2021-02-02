@@ -71,7 +71,7 @@ const Profile = ({ UserObject, refreshUser }) => {
       )}
       <form onSubmit={onUpdateProfile} className="profileForm">
         <label htmlFor="image-file" className="profile__label">
-          <span>Change Profile Image</span>
+          <span>프로필 이미지</span>
           <FontAwesomeIcon icon={faPlus} />
         </label>
         <input
@@ -83,7 +83,7 @@ const Profile = ({ UserObject, refreshUser }) => {
         />
         <input
           type="text"
-          placeholder="Display Name"
+          placeholder="실명을 입력해 주세요 :)"
           value={NewDisplayName}
           onChange={onChange}
           className="formInput"
@@ -91,13 +91,13 @@ const Profile = ({ UserObject, refreshUser }) => {
         />
         <input
           type="submit"
-          value="Update Profile"
+          value="프로필 업데이트"
           className="formBtn"
           style={{ marginTop: 10 }}
         />
       </form>
       <span className="formBtn cancelBtn logOut" onClick={onLogOut}>
-        Log Out
+        로그아웃
       </span>
     </div>
   );

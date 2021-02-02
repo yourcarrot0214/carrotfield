@@ -18,10 +18,10 @@ function SocialSignInForm() {
   return (
     <div className="authBtns">
       <button onClick={onSocialLogin} name="google" className="authBtn">
-        Continue with Google <FontAwesomeIcon icon={faGoogle} />
+        Login with Google <FontAwesomeIcon icon={faGoogle} />
       </button>
       <button onClick={onSocialLogin} name="github" className="authBtn">
-        Continue with Github <FontAwesomeIcon icon={faGithub} />
+        Login with Github <FontAwesomeIcon icon={faGithub} />
       </button>
     </div>
   );
