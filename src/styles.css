@@ -75,6 +75,15 @@ form {
   background-color: tomato;
 }
 
+/* Navigation */
+
+.nav__container {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  align-items: baseline;
+}
+
 /* Profile Page */
 
 .profileForm {
