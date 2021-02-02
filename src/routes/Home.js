@@ -49,6 +49,10 @@ const Home = ({ UserObject }) => {
     <div className="container">
       <TweetForm UserObject={UserObject} />
 
+      <div className="notice">
+        {`당근 밭에 ${Tweets.length}개의 게시글이 있습니다.`}
+      </div>
+
       <div style={{ marginTop: 30 }}>
         {Tweets.map((tweet) => (
           <TweetPage
