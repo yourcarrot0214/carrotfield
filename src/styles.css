@@ -74,7 +74,7 @@ footer {
 }
 
 .formInput {
-  width: 100%;
+  /* width: 100%; */
   padding: 10px 20px;
   border-radius: 20px;
   border: 1px solid black;
@@ -85,7 +85,7 @@ footer {
 
 .formBtn {
   cursor: pointer;
-  width: 100%;
+  /* width: 100%; */
   padding: 7px 20px;
   text-align: center;
   color: white;
