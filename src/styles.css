@@ -5,9 +5,10 @@
 }
 
 input {
-  all: unset;
+  /* all: unset; */
   box-sizing: border-box;
   appearance: none;
+  border: none;
 }
 
 body {
@@ -188,6 +189,7 @@ footer {
   font-weight: 500;
   font-size: 12px;
   margin-top: 1rem;
+  background-color: #030a14;
 }
 
 .factoryInput__arrow {
