@@ -38,6 +38,4 @@ const initialState = {
   Tweets: [],
 };
 
-console.log(initialState);
-
 export default initialState;

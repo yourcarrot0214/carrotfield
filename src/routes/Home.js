@@ -22,7 +22,6 @@ const Home = ({ UserObject }) => {
           }));
           setTweets(tweetArray);
         });
-      console.log("tweet listener");
     };
 
     const onCommentListener = () => {
@@ -36,14 +35,11 @@ const Home = ({ UserObject }) => {
           }));
           setComments(commentsArray);
         });
-      console.log("comment listener");
     };
 
     onTweetListener();
     onCommentListener();
   }, []);
-
-  console.log(UserObject);
 
   return (
     <div className="container">

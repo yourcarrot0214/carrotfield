@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { firebaseStore } from "Fbase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLock, faLockOpen } from "@fortawesome/free-solid-svg-icons";
-import { v4 as uuidv4 } from "uuid";
 
 const CommentForm = ({ UserObject, tweetObject, toggleComment }) => {
   const [Comment, setComment] = useState("");
@@ -24,7 +23,6 @@ const CommentForm = ({ UserObject, tweetObject, toggleComment }) => {
     await firebaseStore.collection("comments").add(commentObject);
 
     setComment("");
-    // toggle comment form
   };
 
   const onChangeComment = (event) => {

@@ -10,7 +10,6 @@ const TweetEditor = ({
 }) => {
   const onUpdateSubmit = async (event) => {
     event.preventDefault();
-    // update
     await firebaseStore.doc(`tweets/${tweetObject.id}`).update({
       text: NewTweet,
     });

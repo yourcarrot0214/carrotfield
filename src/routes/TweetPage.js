@@ -4,7 +4,6 @@ import TweetOptions from "../components/TweetOptions";
 import TweetEditor from "components/TweetEditor";
 import Tweet from "components/Tweet";
 import CommentForm from "components/comments/CommentForm";
-import CommentPage from "./CommentPage";
 import Comment from "components/comments/Comment";
 
 const TweetPage = ({

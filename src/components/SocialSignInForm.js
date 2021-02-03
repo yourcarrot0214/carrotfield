@@ -13,7 +13,6 @@ function SocialSignInForm() {
       provider = new firebaseInstance.auth.GithubAuthProvider();
     }
     const data = await firebaseAuth.signInWithRedirect(provider);
-    console.log("social login data :: ", data);
   };
   return (
     <div className="authBtns">

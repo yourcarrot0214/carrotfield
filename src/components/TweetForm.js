@@ -36,11 +36,10 @@ const TweetForm = ({ UserObject }) => {
       setErrorMessage("프로필에서 닉네임 혹은 실명을 등록해 주세요.");
       return;
     }
-    // attachment image upload
+
     let attachmentURL = "";
 
     if (AttachmentImage !== "") {
-      // attachment image가 있으면 사진 경로를 지정
       const attachmentRef = firebaseStorage
         .ref()
         .child(`${UserObject.uid}/${uuidv4()}`);
@@ -50,6 +49,7 @@ const TweetForm = ({ UserObject }) => {
       );
       attachmentURL = await response.ref.getDownloadURL();
     }
+
     const tweetObject = {
       email: UserObject.email,
       displayName: UserObject.displayName,
@@ -59,6 +59,7 @@ const TweetForm = ({ UserObject }) => {
       IsPublic,
       attachmentURL,
     };
+
     await firebaseStore.collection("tweets").add(tweetObject);
     setTweet("");
     onClearAttachment();

@@ -42,7 +42,10 @@ const Comment = ({ UserObject, tweetObject, commentObject }) => {
             <h4 className="nweet__text">{commentObject.text}</h4>
           ) : UserObject.uid === commentObject.creatorId ||
             tweetObject.creatorId === UserObject.uid ? (
-            <h4 className="nweet__text">{commentObject.text}</h4>
+            <>
+              <span className="nweet__scope">{PRIVATE_COMMENT}</span>
+              <h4 className="nweet__text">{commentObject.text}</h4>
+            </>
           ) : (
             <h4 className="nweet__text private">{PRIVATE_COMMENT}</h4>
           )}

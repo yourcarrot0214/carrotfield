@@ -285,6 +285,14 @@ footer {
   line-height: 1.2rem;
 }
 
+.nweet__scope {
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: bold;
+  font-style: italic;
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+}
+
 .nweet__text.private {
   color: rgba(255, 255, 255, 0.5);
   font-weight: bold;

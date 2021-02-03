@@ -17,13 +17,11 @@ const AuthForm = () => {
     try {
       let data;
       if (NewAccount) {
-        // create account
         data = await firebaseAuth.createUserWithEmailAndPassword(
           Email,
           Password
         );
       } else {
-        // log in
         data = await firebaseAuth.signInWithEmailAndPassword(Email, Password);
         console.log("login data ::", data);
       }

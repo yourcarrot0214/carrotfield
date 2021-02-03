@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { firebaseStore } from "Fbase";
+import React from "react";
 import ReplyOption from "./options/ReplyOption";
 import DeleteOption from "./options/DeleteOption";
 import EditOption from "./options/EditOption";

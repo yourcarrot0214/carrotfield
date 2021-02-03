@@ -16,7 +16,7 @@ const Profile = ({ UserObject, refreshUser }) => {
 
   const onUpdateProfile = async (event) => {
     event.preventDefault();
-    // onChangeDisplayName
+
     if (UserObject.displayName !== NewDisplayName) {
       await UserObject.updateProfile({
         ...UserObject,
@@ -26,17 +26,16 @@ const Profile = ({ UserObject, refreshUser }) => {
 
       setNewDisplayName("");
     }
-    // onChangeProfileImage
+
     let profileImageURL = "";
 
     if (PhotoURL !== UserObject.photoURL) {
-      // attachment image가 있으면 사진 경로를 지정
       const attachmentRef = firebaseStorage
         .ref()
         .child(`${UserObject.uid}/${uuidv4()}`);
       const response = await attachmentRef.putString(PhotoURL, "data_url");
       profileImageURL = await response.ref.getDownloadURL();
-      // update
+
       await UserObject.updateProfile({
         ...UserObject,
         photoURL: profileImageURL,
