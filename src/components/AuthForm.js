@@ -15,15 +15,10 @@ const AuthForm = () => {
       return;
     }
     try {
-      let data;
       if (NewAccount) {
-        data = await firebaseAuth.createUserWithEmailAndPassword(
-          Email,
-          Password
-        );
+        await firebaseAuth.createUserWithEmailAndPassword(Email, Password);
       } else {
-        data = await firebaseAuth.signInWithEmailAndPassword(Email, Password);
-        console.log("login data ::", data);
+        await firebaseAuth.signInWithEmailAndPassword(Email, Password);
       }
     } catch (error) {
       console.log("login form submit error :: ", error.message);
