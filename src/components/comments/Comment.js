@@ -11,6 +11,7 @@ const Comment = ({ UserObject, tweetObject, commentObject }) => {
   const isCommentWriter = UserObject.uid === commentObject.creatorId;
   const [CommentEditMode, setCommentEditMode] = useState(false);
   const [NewComment, setNewComment] = useState(commentObject.text);
+  const [CommentScope, setCommentScope] = useState(commentObject.IsPublic);
 
   const onToggleCommentEditMode = () => {
     setCommentEditMode((prev) => !prev);
@@ -21,6 +22,13 @@ const Comment = ({ UserObject, tweetObject, commentObject }) => {
     if (check) {
       await firebaseStore.doc(`comments/${commentObject.id}`).delete();
     }
+  };
+
+  const onChangeCommentScope = async () => {
+    setCommentScope(!CommentScope);
+    await firebaseStore.doc(`comments/${commentObject.id}`).update({
+      IsPublic: !CommentScope,
+    });
   };
 
   return (
@@ -53,7 +61,10 @@ const Comment = ({ UserObject, tweetObject, commentObject }) => {
             <div className="nweet__actions">
               <DeleteOption onDeleteTweet={onDeleteComment} />
               <EditOption toggleEditing={onToggleCommentEditMode} />
-              <ScopeOption IsPublic={commentObject.IsPublic} />
+              <ScopeOption
+                IsPublic={CommentScope}
+                onChangeScope={onChangeCommentScope}
+              />
             </div>
           )}
         </>
