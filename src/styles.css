@@ -185,7 +185,6 @@ footer {
   border-radius: 20px;
   font-weight: 500;
   font-size: 12px;
-  margin-top: 1rem;
   background-color: #030a14;
 }
 
@@ -199,7 +198,6 @@ footer {
   text-align: center;
   border-radius: 20px;
   color: white;
-  margin-top: 1rem;
 }
 
 .factoryInput__label {
@@ -239,6 +237,7 @@ footer {
 .form__scope {
   color: rgba(255, 255, 255, 0.5);
   margin-top: 1rem;
+  margin-bottom: 1rem;
   font-size: 0.8rem;
   padding-left: 20px;
 }
