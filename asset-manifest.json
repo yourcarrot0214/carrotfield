@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/carrotfield/static/css/main.cbda66fa.chunk.css",
+    "main.css": "/carrotfield/static/css/main.79638499.chunk.css",
     "main.js": "/carrotfield/static/js/main.a6dd902f.chunk.js",
     "main.js.map": "/carrotfield/static/js/main.a6dd902f.chunk.js.map",
     "runtime-main.js": "/carrotfield/static/js/runtime-main.84a4a263.js",
@@ -8,14 +8,14 @@
     "static/js/2.a2b00804.chunk.js": "/carrotfield/static/js/2.a2b00804.chunk.js",
     "static/js/2.a2b00804.chunk.js.map": "/carrotfield/static/js/2.a2b00804.chunk.js.map",
     "index.html": "/carrotfield/index.html",
-    "static/css/main.cbda66fa.chunk.css.map": "/carrotfield/static/css/main.cbda66fa.chunk.css.map",
+    "static/css/main.79638499.chunk.css.map": "/carrotfield/static/css/main.79638499.chunk.css.map",
     "static/js/2.a2b00804.chunk.js.LICENSE.txt": "/carrotfield/static/js/2.a2b00804.chunk.js.LICENSE.txt",
     "static/media/spinner.0204eb8c.gif": "/carrotfield/static/media/spinner.0204eb8c.gif"
   },
   "entrypoints": [
     "static/js/runtime-main.84a4a263.js",
     "static/js/2.a2b00804.chunk.js",
-    "static/css/main.cbda66fa.chunk.css",
+    "static/css/main.79638499.chunk.css",
     "static/js/main.a6dd902f.chunk.js"
   ]
 }
