@@ -248,10 +248,12 @@ footer {
 
 .scope__public {
   color: white;
+  margin-left: 1rem;
 }
 
 .scope__private {
   color: gray;
+  margin-left: 1rem;
 }
 
 /* Nweet */

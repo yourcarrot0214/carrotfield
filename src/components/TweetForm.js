@@ -9,7 +9,7 @@ import {
   faLockOpen,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { message } from "antd";
+import { message, Switch } from "antd";
 
 const welcomeMessage = [
   "오늘 하루 어땠나요?",
@@ -90,19 +90,16 @@ const TweetForm = ({ UserObject }) => {
 
   return (
     <>
-      <div className="form__scope" onClick={onChangeScope}>
+      <div className="form__scope">
+        <Switch defaultChecked onChange={onChangeScope} />
         {IsPublic ? (
           <>
-            <span className="scope__public">
-              <FontAwesomeIcon icon={faLockOpen} />
-              &nbsp; 게시글이 모두에게 공개됩니다.
-            </span>
+            <span className="scope__public">게시글이 모두에게 공개됩니다.</span>
           </>
         ) : (
           <>
             <span className="scope__private">
-              <FontAwesomeIcon icon={faLock} />
-              &nbsp; 게시글이 정병훈 님에게만 공개됩니다.
+              게시글이 정병훈 님에게만 공개됩니다.
             </span>
           </>
         )}
