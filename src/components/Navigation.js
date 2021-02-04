@@ -10,7 +10,7 @@ const Navigation = ({ UserObject }) => {
         <ul className="nav__container">
           <li>
             <Link to="/" style={{ marginRight: 10 }}>
-              <FontAwesomeIcon icon={faCarrot} color={"#04AAFF"} size="2x" />
+              <FontAwesomeIcon icon={faCarrot} color={"orangered"} size="2x" />
             </Link>
           </li>
           <li>

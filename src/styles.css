@@ -235,15 +235,18 @@ footer {
 }
 
 .form__scope {
-  color: rgba(255, 255, 255, 0.5);
   margin-top: 1rem;
   margin-bottom: 1rem;
   font-size: 0.8rem;
   padding-left: 20px;
 }
 
-.form__scope span {
-  margin-left: 0.5rem;
+.scope__public {
+  color: white;
+}
+
+.scope__private {
+  color: gray;
 }
 
 /* Nweet */
@@ -271,6 +274,7 @@ footer {
   font-size: 1rem;
   font-weight: bold;
   margin-bottom: 1rem;
+  color: white;
 }
 
 .nweet__email {
@@ -281,6 +285,7 @@ footer {
 
 .nweet__text {
   line-height: 1.2rem;
+  color: white;
 }
 
 .nweet__scope {
@@ -358,10 +363,10 @@ footer {
   width: 100%;
   padding: 10px;
   border-radius: 30px;
-  background-color: rgba(255, 255, 255, 1);
+  background-color: #030a14;
   margin-bottom: 10px;
   font-size: 12px;
-  color: black;
+  color: white;
 }
 
 .authSubmit {

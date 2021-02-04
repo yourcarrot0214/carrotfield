@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { firebaseAuth, firebaseStorage, firebaseStore } from "../Fbase";
+import { firebaseAuth, firebaseStorage } from "../Fbase";
 import { useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { v4 as uuidv4 } from "uuid";
+import { message } from "antd";
 
 const Profile = ({ UserObject, refreshUser }) => {
   const history = useHistory();
@@ -12,10 +13,13 @@ const Profile = ({ UserObject, refreshUser }) => {
   const onLogOut = () => {
     firebaseAuth.signOut();
     history.push("/");
+    return message.success("당근밭에서 로그아웃 했습니다.");
   };
 
   const onUpdateProfile = async (event) => {
     event.preventDefault();
+    if (NewDisplayName === "")
+      return message.warning("이름 혹은 닉네임을 입력해 주세요.");
 
     if (UserObject.displayName !== NewDisplayName) {
       await UserObject.updateProfile({
@@ -30,6 +34,7 @@ const Profile = ({ UserObject, refreshUser }) => {
     let profileImageURL = "";
 
     if (PhotoURL !== UserObject.photoURL) {
+      message.warn("프로필을 업데이트 중입니다.");
       const attachmentRef = firebaseStorage
         .ref()
         .child(`${UserObject.uid}/${uuidv4()}`);
@@ -43,6 +48,7 @@ const Profile = ({ UserObject, refreshUser }) => {
       refreshUser();
       setPhotoURL(profileImageURL);
     }
+    return message.success("프로필이 업데이트 되었습니다.");
   };
 
   const onChange = (event) => {
@@ -84,7 +90,7 @@ const Profile = ({ UserObject, refreshUser }) => {
         />
         <input
           type="text"
-          placeholder="실명을 입력해 주세요 :)"
+          placeholder="이름 혹은 닉네임을 입력해 주세요 :)"
           value={NewDisplayName}
           onChange={onChange}
           className="formInput"

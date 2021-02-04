@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { firebaseAuth } from "../Fbase";
+import { message } from "antd";
 
 const AuthForm = () => {
   const [Email, setEmail] = useState("");
@@ -17,8 +18,10 @@ const AuthForm = () => {
     try {
       if (NewAccount) {
         await firebaseAuth.createUserWithEmailAndPassword(Email, Password);
+        return message.success("계정이 성공적으로 생성되었습니다.");
       } else {
         await firebaseAuth.signInWithEmailAndPassword(Email, Password);
+        return message.success("Welcome to Carrot Field");
       }
     } catch (error) {
       console.log("login form submit error :: ", error.message);

@@ -9,6 +9,8 @@ import {
   faLockOpen,
 } from "@fortawesome/free-solid-svg-icons";
 
+import { message } from "antd";
+
 const welcomeMessage = [
   "오늘 하루 어땠나요?",
   "잘 지내고 계시죠?",
@@ -20,10 +22,10 @@ const TweetForm = ({ UserObject }) => {
   const [Tweet, setTweet] = useState("");
   const [AttachmentImage, setAttachmentImage] = useState("");
   const [IsPublic, setIsPublic] = useState(true);
-  const [ErrorMessage, setErrorMessage] = useState("");
   const PLACEHOLDER = UserObject.displayName
     ? `${welcomeMessage[Math.floor(Math.random() * welcomeMessage.length)]}`
     : "프로필에서 실명을 업데이트 후 이용해주세요.";
+
   const onTweet = (event) => {
     const { value } = event.target;
     setTweet(value);
@@ -31,15 +33,15 @@ const TweetForm = ({ UserObject }) => {
 
   const onSubmit = async (event) => {
     event.preventDefault();
-    if (Tweet === "") return;
+    if (Tweet === "") return message.warn("게시글을 작성해 주세요.");
     if (UserObject.displayName === null) {
-      setErrorMessage("프로필에서 닉네임 혹은 실명을 등록해 주세요.");
-      return;
+      return message.error("프로필에서 닉네임을 등록 후 이용해 주세요:)");
     }
 
     let attachmentURL = "";
 
     if (AttachmentImage !== "") {
+      message.warn("게시글을 업로드 중입니다.");
       const attachmentRef = firebaseStorage
         .ref()
         .child(`${UserObject.uid}/${uuidv4()}`);
@@ -63,6 +65,8 @@ const TweetForm = ({ UserObject }) => {
     await firebaseStore.collection("tweets").add(tweetObject);
     setTweet("");
     onClearAttachment();
+
+    return message.success("게시글이 업로드 되었습니다.");
   };
 
   const onFileChange = (event) => {
@@ -89,13 +93,17 @@ const TweetForm = ({ UserObject }) => {
       <div className="form__scope" onClick={onChangeScope}>
         {IsPublic ? (
           <>
-            <FontAwesomeIcon icon={faLockOpen} />
-            <span>게시글이 모두에게 공개됩니다.</span>
+            <span className="scope__public">
+              <FontAwesomeIcon icon={faLockOpen} />
+              &nbsp; 게시글이 모두에게 공개됩니다.
+            </span>
           </>
         ) : (
           <>
-            <FontAwesomeIcon icon={faLock} />
-            <span>게시글이 정병훈 님에게만 공개됩니다.</span>
+            <span className="scope__private">
+              <FontAwesomeIcon icon={faLock} />
+              &nbsp; 게시글이 정병훈 님에게만 공개됩니다.
+            </span>
           </>
         )}
       </div>
@@ -111,7 +119,6 @@ const TweetForm = ({ UserObject }) => {
           />
           <input type="submit" value="&rarr;" className="factoryInput__arrow" />
         </div>
-        {ErrorMessage && <span className="authError">{ErrorMessage}</span>}
         <label htmlFor="attach-file" className="factoryInput__label">
           <span>Add photos</span>
           <FontAwesomeIcon icon={faPlus} />

@@ -1,5 +1,6 @@
 import React from "react";
 import { firebaseStore } from "Fbase";
+import { message } from "antd";
 
 const TweetEditor = ({
   tweetObject,
@@ -14,6 +15,7 @@ const TweetEditor = ({
       text: NewTweet,
     });
     setIsEditing((prev) => !prev);
+    return message.success("게시글이 업데이트 되었습니다.");
   };
 
   const onEditingTweet = (event) => {

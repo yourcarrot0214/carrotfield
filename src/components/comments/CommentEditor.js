@@ -1,5 +1,6 @@
 import React from "react";
 import { firebaseStore } from "Fbase";
+import { message } from "antd";
 
 const CommentEditor = ({
   comment,
@@ -14,6 +15,7 @@ const CommentEditor = ({
       text: NewComment,
     });
     onToggleCommentEditMode((prev) => !prev);
+    return message.success("댓글이 업데이트 되었습니다.");
   };
 
   const onEditingComment = (event) => {

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import AppRouter from "./Router";
 import { firebaseAuth } from "../Fbase";
 import Loader from "routes/Loader";
+import "antd/dist/antd.css";
 
 function App() {
   const [Init, setInit] = useState(false);

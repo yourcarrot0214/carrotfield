@@ -4,6 +4,7 @@ import EditOption from "components/options/EditOption";
 import ScopeOption from "components/options/ScopeOption";
 import { firebaseStore } from "Fbase";
 import CommentEditor from "./CommentEditor";
+import { message } from "antd";
 
 const PRIVATE_COMMENT = "비공개 댓글 입니다.";
 
@@ -21,6 +22,7 @@ const Comment = ({ UserObject, tweetObject, commentObject }) => {
     const check = window.confirm("댓글을 삭제하시겠습니까?");
     if (check) {
       await firebaseStore.doc(`comments/${commentObject.id}`).delete();
+      return message.success("댓글이 삭제되었습니다.");
     }
   };
 
@@ -29,6 +31,10 @@ const Comment = ({ UserObject, tweetObject, commentObject }) => {
     await firebaseStore.doc(`comments/${commentObject.id}`).update({
       IsPublic: !CommentScope,
     });
+    const result = !CommentScope
+      ? "댓글이 모두에게 공개됩니다."
+      : "댓글이 게시글 작성자에게만 공개됩니다.";
+    return message.success(result);
   };
 
   return (

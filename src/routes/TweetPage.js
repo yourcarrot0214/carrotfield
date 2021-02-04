@@ -5,6 +5,7 @@ import TweetEditor from "components/TweetEditor";
 import Tweet from "components/Tweet";
 import CommentForm from "components/comments/CommentForm";
 import Comment from "components/comments/Comment";
+import { message } from "antd";
 
 const TweetPage = ({
   isCreator,
@@ -46,6 +47,10 @@ const TweetPage = ({
     await firebaseStore.doc(`tweets/${tweetObject.id}`).update({
       IsPublic: !IsPublic,
     });
+    const result = !IsPublic
+      ? "게시글이 모두에게 공개됩니다."
+      : "게시글이 정병훈님에게만 공개됩니다.";
+    return message.success(result);
   };
 
   const toggleEditing = () => {
@@ -69,8 +74,10 @@ const TweetPage = ({
           await firebaseStore.doc(`comments/${tweetComments[i].id}`).delete();
         }
       }
-      if (tweetObject.attachmentURL)
+      if (tweetObject.attachmentURL) {
         await firebaseStorage.refFromURL(tweetObject.attachmentURL).delete();
+      }
+      return message.success("게시글이 삭제되었습니다.");
     }
   };
 
