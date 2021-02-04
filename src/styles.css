@@ -157,6 +157,11 @@ footer {
   align-items: center;
 }
 
+.loading__icon {
+  font-size: 3rem;
+  margin: 3rem auto;
+}
+
 /* Nwitter Factory */
 
 .factoryForm {
