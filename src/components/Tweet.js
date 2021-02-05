@@ -2,11 +2,13 @@ import React from "react";
 
 const Tweet = ({ tweetObject, UserObject }) => {
   const OWNER_UID = process.env.REACT_APP_OWNER_UID;
+  const email = tweetObject.email.split("@");
+
   return (
     <>
       <h4 className="nweet__displayName">
         {tweetObject.displayName}
-        <span className="nweet__email">{tweetObject.email}</span>
+        <span className="nweet__email">{email[0]}</span>
       </h4>
       {tweetObject.IsPublic ? (
         <>
