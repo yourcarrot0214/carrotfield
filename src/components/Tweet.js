@@ -1,4 +1,5 @@
 import React from "react";
+import { Image } from "antd";
 
 const Tweet = ({ tweetObject, UserObject }) => {
   const OWNER_UID = process.env.REACT_APP_OWNER_UID;
@@ -14,7 +15,8 @@ const Tweet = ({ tweetObject, UserObject }) => {
         <>
           <h4 className="nweet__text">{tweetObject.text}</h4>
           {tweetObject.attachmentURL && (
-            <img src={tweetObject.attachmentURL} alt="첨부이미지" />
+            // <img src={tweetObject.attachmentURL} alt="첨부이미지" />
+            <Image src={tweetObject.attachmentURL} />
           )}
         </>
       ) : UserObject.uid === OWNER_UID ||
@@ -22,7 +24,7 @@ const Tweet = ({ tweetObject, UserObject }) => {
         <>
           <h4 className="nweet__text">{tweetObject.text}</h4>
           {tweetObject.attachmentURL && (
-            <img src={tweetObject.attachmentURL} alt="첨부이미지" />
+            <Image src={tweetObject.attachmentURL} />
           )}
         </>
       ) : (
