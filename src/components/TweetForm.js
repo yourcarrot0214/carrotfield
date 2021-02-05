@@ -2,12 +2,7 @@ import React, { useState } from "react";
 import { firebaseStore, firebaseStorage } from "../Fbase";
 import { v4 as uuidv4 } from "uuid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faPlus,
-  faTimes,
-  faLock,
-  faLockOpen,
-} from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 import { message, Switch } from "antd";
 

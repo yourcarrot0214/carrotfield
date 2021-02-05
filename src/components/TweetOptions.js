@@ -7,7 +7,6 @@ import ScopeOption from "./options/ScopeOption";
 function TweetOptions({
   isCreator,
   isOwner,
-  tweetObject,
   onDeleteTweet,
   toggleEditing,
   toggleComment,
