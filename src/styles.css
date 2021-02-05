@@ -42,6 +42,10 @@ footer {
   opacity: 0.9;
 }
 
+#root {
+  padding: 2rem;
+}
+
 .app__container {
   width: 100%;
   max-width: 360px;
