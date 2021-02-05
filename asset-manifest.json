@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/carrotfield/static/css/main.43a69963.chunk.css",
-    "main.js": "/carrotfield/static/js/main.0f907e33.chunk.js",
-    "main.js.map": "/carrotfield/static/js/main.0f907e33.chunk.js.map",
+    "main.css": "/carrotfield/static/css/main.3a0c99b5.chunk.css",
+    "main.js": "/carrotfield/static/js/main.f743b9d1.chunk.js",
+    "main.js.map": "/carrotfield/static/js/main.f743b9d1.chunk.js.map",
     "runtime-main.js": "/carrotfield/static/js/runtime-main.84a4a263.js",
     "runtime-main.js.map": "/carrotfield/static/js/runtime-main.84a4a263.js.map",
     "static/css/2.79c08235.chunk.css": "/carrotfield/static/css/2.79c08235.chunk.css",
@@ -10,14 +10,14 @@
     "static/js/2.d1a0b03c.chunk.js.map": "/carrotfield/static/js/2.d1a0b03c.chunk.js.map",
     "index.html": "/carrotfield/index.html",
     "static/css/2.79c08235.chunk.css.map": "/carrotfield/static/css/2.79c08235.chunk.css.map",
-    "static/css/main.43a69963.chunk.css.map": "/carrotfield/static/css/main.43a69963.chunk.css.map",
+    "static/css/main.3a0c99b5.chunk.css.map": "/carrotfield/static/css/main.3a0c99b5.chunk.css.map",
     "static/js/2.d1a0b03c.chunk.js.LICENSE.txt": "/carrotfield/static/js/2.d1a0b03c.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.84a4a263.js",
     "static/css/2.79c08235.chunk.css",
     "static/js/2.d1a0b03c.chunk.js",
-    "static/css/main.43a69963.chunk.css",
-    "static/js/main.0f907e33.chunk.js"
+    "static/css/main.3a0c99b5.chunk.css",
+    "static/js/main.f743b9d1.chunk.js"
   ]
 }
