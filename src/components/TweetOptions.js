@@ -3,6 +3,7 @@ import ReplyOption from "./options/ReplyOption";
 import DeleteOption from "./options/DeleteOption";
 import EditOption from "./options/EditOption";
 import ScopeOption from "./options/ScopeOption";
+import { Tooltip } from "antd";
 
 function TweetOptions({
   isCreator,
@@ -16,13 +17,29 @@ function TweetOptions({
   return (
     <div className="nweet__actions">
       {IsPublic || isCreator || isOwner ? (
-        <ReplyOption toggleComment={toggleComment} />
+        <Tooltip title="댓글">
+          <span>
+            <ReplyOption toggleComment={toggleComment} />
+          </span>
+        </Tooltip>
       ) : null}
       {isCreator ? (
         <>
-          <DeleteOption onDeleteTweet={onDeleteTweet} />
-          <EditOption toggleEditing={toggleEditing} />
-          <ScopeOption IsPublic={IsPublic} onChangeScope={onChangeScope} />
+          <Tooltip title="삭제하기">
+            <span>
+              <DeleteOption onDeleteTweet={onDeleteTweet} />
+            </span>
+          </Tooltip>
+          <Tooltip title="수정하기">
+            <span>
+              <EditOption toggleEditing={toggleEditing} />
+            </span>
+          </Tooltip>
+          <Tooltip title="공개범위설정">
+            <span>
+              <ScopeOption IsPublic={IsPublic} onChangeScope={onChangeScope} />
+            </span>
+          </Tooltip>
         </>
       ) : null}
     </div>

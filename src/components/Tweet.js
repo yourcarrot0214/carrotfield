@@ -3,7 +3,6 @@ import React from "react";
 const Tweet = ({ tweetObject, UserObject }) => {
   const OWNER_UID = process.env.REACT_APP_OWNER_UID;
   const email = tweetObject.email.split("@")[0];
-  console.log(email);
 
   return (
     <>
