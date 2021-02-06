@@ -10,6 +10,7 @@ const PRIVATE_COMMENT = "비공개 댓글 입니다.";
 
 const Comment = ({ UserObject, tweetObject, commentObject }) => {
   const isCommentWriter = UserObject.uid === commentObject.creatorId;
+  const creatorEmail = commentObject.email.split("@")[0];
   const [CommentEditMode, setCommentEditMode] = useState(false);
   const [NewComment, setNewComment] = useState(commentObject.text);
   const [CommentScope, setCommentScope] = useState(commentObject.IsPublic);
@@ -50,7 +51,7 @@ const Comment = ({ UserObject, tweetObject, commentObject }) => {
         <>
           <h4 className="nweet__displayName">
             {commentObject.displayName}
-            <span className="nweet__email">{commentObject.email}</span>
+            <span className="nweet__email">{creatorEmail}</span>
           </h4>
           {commentObject.IsPublic ? (
             <h4 className="nweet__text">{commentObject.text}</h4>

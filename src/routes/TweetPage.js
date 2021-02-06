@@ -15,6 +15,23 @@ const TweetPage = ({
   UserObject,
 }) => {
   useEffect(() => {
+    const onUpdateDisplayName = (COLLECTION_NAME) => {
+      firebaseStore
+        .collection(COLLECTION_NAME)
+        .where("creatorId", "==", UserObject.uid)
+        .get()
+        .then((snapshot) => {
+          if (snapshot.empty) {
+            console.log("No matching documents.");
+            return;
+          }
+          snapshot.forEach((doc) => {
+            firebaseStore.collection(COLLECTION_NAME).doc(doc.id).update({
+              displayName: UserObject.displayName,
+            });
+          });
+        });
+    };
     onUpdateDisplayName("tweets");
     onUpdateDisplayName("comments");
   });
@@ -23,24 +40,6 @@ const TweetPage = ({
   const [CommentToggle, setCommentToggle] = useState(false);
   const [NewTweet, setNewTweet] = useState(tweetObject.text);
   const [IsPublic, setIsPublic] = useState(tweetObject.IsPublic);
-
-  const onUpdateDisplayName = (COLLECTION_NAME) => {
-    firebaseStore
-      .collection(COLLECTION_NAME)
-      .where("creatorId", "==", UserObject.uid)
-      .get()
-      .then((snapshot) => {
-        if (snapshot.empty) {
-          console.log("No matching documents.");
-          return;
-        }
-        snapshot.forEach((doc) => {
-          firebaseStore.collection(COLLECTION_NAME).doc(doc.id).update({
-            displayName: UserObject.displayName,
-          });
-        });
-      });
-  };
 
   const onChangeScope = async () => {
     setIsPublic(!IsPublic);
