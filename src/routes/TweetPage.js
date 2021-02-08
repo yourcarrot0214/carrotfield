@@ -34,7 +34,7 @@ const TweetPage = ({
     };
     onUpdateDisplayName("tweets");
     onUpdateDisplayName("comments");
-  });
+  }, [UserObject.displayName, UserObject.uid]);
 
   const [IsEditing, setIsEditing] = useState(false);
   const [CommentToggle, setCommentToggle] = useState(false);

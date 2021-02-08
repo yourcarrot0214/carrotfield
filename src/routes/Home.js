@@ -11,34 +11,31 @@ const Home = ({ UserObject }) => {
   const [Comments, setComments] = useState([]);
 
   useEffect(() => {
-    const onTweetListener = () => {
-      firebaseStore
-        .collection("tweets")
-        .orderBy("createdAt", "desc")
-        .onSnapshot((snapshot) => {
-          const tweetArray = snapshot.docs.map((doc) => ({
-            id: doc.id,
-            ...doc.data(),
-          }));
-          setTweets(tweetArray);
-        });
-    };
+    const onTweetListener = firebaseStore
+      .collection("tweets")
+      .orderBy("createdAt", "desc")
+      .onSnapshot((snapshot) => {
+        const tweetArray = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setTweets(tweetArray);
+      });
+    return onTweetListener;
+  }, []);
 
-    const onCommentListener = () => {
-      firebaseStore
-        .collection("comments")
-        .orderBy("createdAt", "asc")
-        .onSnapshot((snapshot) => {
-          const commentsArray = snapshot.docs.map((doc) => ({
-            id: doc.id,
-            ...doc.data(),
-          }));
-          setComments(commentsArray);
-        });
-    };
-
-    onTweetListener();
-    onCommentListener();
+  useEffect(() => {
+    const onCommentListener = firebaseStore
+      .collection("comments")
+      .orderBy("createdAt", "asc")
+      .onSnapshot((snapshot) => {
+        const commentsArray = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setComments(commentsArray);
+      });
+    return onCommentListener;
   }, []);
 
   return (
