@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { firebaseStore, firebaseStorage } from "../Fbase";
 import TweetOptions from "../components/TweetOptions";
 import TweetEditor from "components/TweetEditor";
@@ -14,28 +14,6 @@ const TweetPage = ({
   commentsObject,
   UserObject,
 }) => {
-  useEffect(() => {
-    const onUpdateDisplayName = (COLLECTION_NAME) => {
-      firebaseStore
-        .collection(COLLECTION_NAME)
-        .where("creatorId", "==", UserObject.uid)
-        .get()
-        .then((snapshot) => {
-          if (snapshot.empty) {
-            console.log("No matching documents.");
-            return;
-          }
-          snapshot.forEach((doc) => {
-            firebaseStore.collection(COLLECTION_NAME).doc(doc.id).update({
-              displayName: UserObject.displayName,
-            });
-          });
-        });
-    };
-    onUpdateDisplayName("tweets");
-    onUpdateDisplayName("comments");
-  }, [UserObject.displayName, UserObject.uid]);
-
   const [IsEditing, setIsEditing] = useState(false);
   const [CommentToggle, setCommentToggle] = useState(false);
   const [NewTweet, setNewTweet] = useState(tweetObject.text);

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { firebaseAuth, firebaseStorage } from "../Fbase";
+import { firebaseAuth, firebaseStorage, firebaseStore } from "../Fbase";
 import { useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faUserCircle } from "@fortawesome/free-solid-svg-icons";
@@ -27,6 +27,8 @@ const Profile = ({ UserObject, refreshUser }) => {
         displayName: NewDisplayName,
       });
       refreshUser();
+      onUpdateDisplayName("tweets");
+      onUpdateDisplayName("comments");
 
       setNewDisplayName("");
     }
@@ -49,6 +51,24 @@ const Profile = ({ UserObject, refreshUser }) => {
       setPhotoURL(profileImageURL);
     }
     return message.success("프로필이 업데이트 되었습니다.");
+  };
+
+  const onUpdateDisplayName = (COLLECTION_NAME) => {
+    firebaseStore
+      .collection(COLLECTION_NAME)
+      .where("creatorId", "==", UserObject.uid)
+      .get()
+      .then((snapshot) => {
+        if (snapshot.empty) {
+          console.log("No matching documents.");
+          return;
+        }
+        snapshot.forEach((doc) => {
+          firebaseStore.collection(COLLECTION_NAME).doc(doc.id).update({
+            displayName: NewDisplayName,
+          });
+        });
+      });
   };
 
   const onChange = (event) => {
