@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/carrotfield/static/css/main.2a621833.chunk.css",
-    "main.js": "/carrotfield/static/js/main.39482043.chunk.js",
-    "main.js.map": "/carrotfield/static/js/main.39482043.chunk.js.map",
+    "main.js": "/carrotfield/static/js/main.d7497f97.chunk.js",
+    "main.js.map": "/carrotfield/static/js/main.d7497f97.chunk.js.map",
     "runtime-main.js": "/carrotfield/static/js/runtime-main.84a4a263.js",
     "runtime-main.js.map": "/carrotfield/static/js/runtime-main.84a4a263.js.map",
     "static/css/2.79c08235.chunk.css": "/carrotfield/static/css/2.79c08235.chunk.css",
@@ -18,6 +18,6 @@
     "static/css/2.79c08235.chunk.css",
     "static/js/2.e5488028.chunk.js",
     "static/css/main.2a621833.chunk.css",
-    "static/js/main.39482043.chunk.js"
+    "static/js/main.d7497f97.chunk.js"
   ]
 }
