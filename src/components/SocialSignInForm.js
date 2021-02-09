@@ -12,7 +12,7 @@ function SocialSignInForm() {
     } else if (name === "github") {
       provider = new firebaseInstance.auth.GithubAuthProvider();
     }
-    const data = await firebaseAuth.signInWithRedirect(provider);
+    await firebaseAuth.signInWithRedirect(provider);
   };
   return (
     <div className="authBtns">
