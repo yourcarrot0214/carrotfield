@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 import { message, Switch } from "antd";
+import TweetScope from "./TweetScope";
 
 const welcomeMessage = [
   "오늘 하루 어땠나요?",
@@ -85,20 +86,7 @@ const TweetForm = ({ UserObject }) => {
 
   return (
     <>
-      <div className="form__scope">
-        <Switch defaultChecked onChange={onChangeScope} />
-        {IsPublic ? (
-          <>
-            <span className="scope__public">게시글이 모두에게 공개됩니다.</span>
-          </>
-        ) : (
-          <>
-            <span className="scope__private">
-              게시글이 정병훈 님에게만 공개됩니다.
-            </span>
-          </>
-        )}
-      </div>
+      <TweetScope IsPublic={IsPublic} onChangeScope={onChangeScope} />
       <form onSubmit={onSubmit} className="factoryForm">
         <div className="factoryInput__container">
           <input
