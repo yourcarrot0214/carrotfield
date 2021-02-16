@@ -38,6 +38,9 @@ const Home = ({ UserObject }) => {
     return onCommentListener;
   }, []);
 
+  const commentList = (tweetId) =>
+    Comments.filter((comment) => comment.responseTo === tweetId);
+
   return (
     <div className="container">
       <TweetForm UserObject={UserObject} />
@@ -54,9 +57,7 @@ const Home = ({ UserObject }) => {
             isCreator={UserObject.uid === tweet.creatorId}
             isOwner={isOwner}
             UserObject={UserObject}
-            commentsObject={Comments.filter(
-              (comment) => comment.responseTo === tweet.id
-            )}
+            commentsObject={commentList(tweet.id)}
           />
         ))}
       </div>
