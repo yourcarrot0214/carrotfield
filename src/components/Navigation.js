@@ -5,9 +5,9 @@ import { faUser, faCarrot, faCode } from "@fortawesome/free-solid-svg-icons";
 
 const Navigation = ({ UserObject }) => {
   return (
-    <>
+    <div className="nav__container">
       <nav>
-        <ul className="nav__container">
+        <ul className="ul__container">
           <li>
             <Link to="/" style={{ marginRight: 10 }}>
               <FontAwesomeIcon icon={faCarrot} color={"orangered"} size="2x" />
@@ -45,7 +45,7 @@ const Navigation = ({ UserObject }) => {
           </li>
         </ul>
       </nav>
-    </>
+    </div>
   );
 };
 

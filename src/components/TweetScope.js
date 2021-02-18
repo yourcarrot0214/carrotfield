@@ -4,7 +4,9 @@ import { Switch } from "antd";
 const TweetScope = ({ IsPublic, onChangeScope }) => {
   return (
     <div className="form__scope">
-      <Switch defaultChecked onChange={onChangeScope} />
+      <div className="scope__switch">
+        <Switch defaultChecked onChange={onChangeScope} />
+      </div>
       {IsPublic ? (
         <>
           <span className="scope__public">게시글이 모두에게 공개됩니다.</span>

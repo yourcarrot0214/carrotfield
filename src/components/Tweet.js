@@ -16,7 +16,10 @@ const Tweet = ({ tweetObject, UserObject }) => {
           <h4 className="nweet__text">{tweetObject.text}</h4>
           {tweetObject.attachmentURL && (
             // <img src={tweetObject.attachmentURL} alt="첨부이미지" />
-            <Image src={tweetObject.attachmentURL} />
+            <div
+              style={{ backgroundImage: `url(${tweetObject.attachmentURL})` }}
+              className="nweet__image"
+            ></div>
           )}
         </>
       ) : UserObject.uid === OWNER_UID ||

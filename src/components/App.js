@@ -47,7 +47,6 @@ function App() {
       ) : (
         <Loader />
       )}
-      <footer>&copy; Carrot Field {new Date().getFullYear()}</footer>
     </div>
   );
 }

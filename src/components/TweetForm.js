@@ -85,7 +85,7 @@ const TweetForm = ({ UserObject }) => {
   };
 
   return (
-    <>
+    <div className="tweetform__container">
       <TweetScope IsPublic={IsPublic} onChangeScope={onChangeScope} />
       <form onSubmit={onSubmit} className="factoryForm">
         <div className="factoryInput__container">
@@ -126,7 +126,7 @@ const TweetForm = ({ UserObject }) => {
           </div>
         )}
       </form>
-    </>
+    </div>
   );
 };
 
