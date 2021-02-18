@@ -49,7 +49,7 @@ const Home = ({ UserObject }) => {
         {`당근 밭에 ${Tweets.length}개의 게시글이 있습니다.`}
       </div>
 
-      <div style={{ marginTop: 30 }}>
+      <div className="nweet__container">
         {Tweets.map((tweet) => (
           <TweetPage
             key={tweet.id}

@@ -43,14 +43,14 @@ footer {
 }
 
 #root {
-  padding: 2rem;
+  padding: 1rem 1rem;
 }
 
 .app__container {
   width: 100%;
   max-width: 360px;
-  margin: 2rem auto;
-  padding-bottom: 1rem;
+  margin: 1rem auto;
+  padding: 1rem 0.5rem;
   border-radius: 25px;
   background: linear-gradient(145deg, #071b37, #06172e);
   box-shadow: 5px 5px 8px #030a14, -5px -5px 8px #0b2852;
@@ -105,8 +105,11 @@ footer {
 
 .nav__container {
   display: flex;
-  justify-content: center;
+  width: 100%;
+  max-width: 320px;
+  justify-content: space-around;
   padding-top: 2rem;
+  margin: 0 auto;
   align-items: baseline;
 }
 
@@ -173,6 +176,7 @@ footer {
   flex-direction: column;
   align-items: center;
   width: 100%;
+  max-width: 320px;
 }
 
 .factoryInput__container {
@@ -272,14 +276,25 @@ footer {
   margin-bottom: 5px;
 }
 
-.nweet {
-  margin-bottom: 20px;
-  border: 1px solid #04aaff;
+.nweet__container {
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
   max-width: 320px;
+}
+
+.nweet {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid #04aaff;
+  width: 100%;
+  max-width: 300px;
   padding: 20px;
   border-radius: 10px;
-  position: relative;
+  /* position: relative; */
   display: flex;
   flex-direction: column;
   color: rgba(255, 255, 255, 0.8);
@@ -407,4 +422,48 @@ footer {
   display: block;
   font-size: 12px;
   text-decoration: underline;
+}
+
+/* devcarrot */
+
+.devcarrot__container {
+  display: flex;
+  flex-direction: column;
+  background-color: #030a14;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 320px;
+}
+
+.devcarrot__header {
+  margin: 1rem;
+}
+
+.devcarrot__header h1 {
+  color: white;
+  font-weight: bold;
+  font-size: 1.3rem;
+  margin-bottom: 12px;
+}
+
+.devcarrot__header h3 {
+  color: rgba(255, 255, 255, 0.8);
+  font-style: italic;
+}
+
+.devcarrot__info {
+  margin: 0 1rem;
+  line-height: 1.4rem;
+}
+
+.devcarrot__info:last-child {
+  margin-bottom: 1rem;
+}
+
+.devcarrot__info li {
+  color: orangered;
+}
+
+.devcarrot__info li span {
+  color: white;
 }

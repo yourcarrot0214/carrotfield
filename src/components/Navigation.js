@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faCarrot } from "@fortawesome/free-solid-svg-icons";
+import { faUser, faCarrot, faCode } from "@fortawesome/free-solid-svg-icons";
 
 const Navigation = ({ UserObject }) => {
   return (
@@ -25,11 +25,22 @@ const Navigation = ({ UserObject }) => {
               }}
             >
               <FontAwesomeIcon icon={faUser} color={"#04AAFF"} size="2x" />
-              <span style={{ marginTop: 10 }}>
-                {UserObject.displayName
-                  ? `${UserObject.displayName}님의 프로필`
-                  : "프로필"}
-              </span>
+              <span style={{ marginTop: 10 }}>내 프로필</span>
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/devcarrot"
+              style={{
+                marginLeft: 10,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                fontSize: 12,
+              }}
+            >
+              <FontAwesomeIcon icon={faCode} color={"#04AAFF"} size="2x" />
+              <span style={{ marginTop: 10 }}>개발자 이야기</span>
             </Link>
           </li>
         </ul>

@@ -4,6 +4,7 @@ import Home from "../routes/Home";
 import Auth from "../routes/Auth";
 import Profile from "routes/Profile";
 import Navigation from "./Navigation";
+import DevCarrot from "../routes/DevCarrot";
 
 const AppRouter = ({ IsLoggedIn, UserObject, refreshUser }) => {
   return (
@@ -18,6 +19,9 @@ const AppRouter = ({ IsLoggedIn, UserObject, refreshUser }) => {
               </Route>
               <Route exact path="/profile">
                 <Profile UserObject={UserObject} refreshUser={refreshUser} />
+              </Route>
+              <Route exact path="/devcarrot">
+                <DevCarrot />
               </Route>
             </div>
           </>

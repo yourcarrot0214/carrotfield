@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
 
-import { message, Switch } from "antd";
+import { message } from "antd";
 import TweetScope from "./TweetScope";
 
 const welcomeMessage = [
