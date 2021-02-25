@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Image } from "antd";
 
 const Tweet = ({ tweetObject, UserObject }) => {
@@ -35,6 +36,11 @@ const Tweet = ({ tweetObject, UserObject }) => {
       )}
     </>
   );
+};
+
+Tweet.propTypes = {
+  tweetObject: PropTypes.object.isRequired,
+  UserObject: PropTypes.object.isRequired,
 };
 
 export default Tweet;

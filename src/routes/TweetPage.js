@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import { firebaseStore, firebaseStorage } from "../Fbase";
 import TweetOptions from "../components/TweetOptions";
 import TweetEditor from "components/TweetEditor";
@@ -104,6 +105,14 @@ const TweetPage = ({
       )}
     </div>
   );
+};
+
+TweetPage.propTypes = {
+  isCreator: PropTypes.bool.isRequired,
+  isOwner: PropTypes.bool.isRequired,
+  tweetObject: PropTypes.object.isRequired,
+  commentsObject: PropTypes.array.isRequired,
+  UserObject: PropTypes.object.isRequired,
 };
 
 export default TweetPage;

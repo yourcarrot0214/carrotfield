@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Switch } from "antd";
 
 const TweetScope = ({ IsPublic, onChangeScope }) => {
@@ -20,6 +21,11 @@ const TweetScope = ({ IsPublic, onChangeScope }) => {
       )}
     </div>
   );
+};
+
+TweetScope.propTypes = {
+  IsPublic: PropTypes.bool.isRequired,
+  onChangeScope: PropTypes.func.isRequired,
 };
 
 export default TweetScope;

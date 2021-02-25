@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import { firebaseAuth, firebaseStorage, firebaseStore } from "../Fbase";
 import { useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -128,6 +129,11 @@ const Profile = ({ UserObject, refreshUser }) => {
       </span>
     </div>
   );
+};
+
+Profile.propTypes = {
+  UserObject: PropTypes.object.isRequired,
+  refreshUser: PropTypes.func.isRequired,
 };
 
 export default Profile;

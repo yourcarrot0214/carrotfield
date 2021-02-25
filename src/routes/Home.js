@@ -65,8 +65,8 @@ const Home = ({ UserObject }) => {
   );
 };
 
-export default Home;
-
 Home.propTypes = {
   UserObject: PropTypes.object,
 };
+
+export default Home;

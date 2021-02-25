@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Comment from "components/comments/Comment";
 
 const CommentPage = ({ UserObject, tweetObject, commentsObject }) => {
@@ -14,6 +15,12 @@ const CommentPage = ({ UserObject, tweetObject, commentsObject }) => {
       ))}
     </>
   );
+};
+
+CommentPage.propTypes = {
+  UserObject: PropTypes.object.isRequired,
+  tweetObject: PropTypes.object.isRequired,
+  commentsObject: PropTypes.object.isRequired,
 };
 
 export default CommentPage;

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faCarrot, faCode } from "@fortawesome/free-solid-svg-icons";
 
-const Navigation = ({ UserObject }) => {
+const Navigation = () => {
   return (
     <div className="nav__container">
       <nav>

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import ReplyOption from "./options/ReplyOption";
 import DeleteOption from "./options/DeleteOption";
 import EditOption from "./options/EditOption";
@@ -45,6 +46,16 @@ function TweetOptions({
     </div>
   );
 }
+
+TweetOptions.propTypes = {
+  isCreator: PropTypes.bool.isRequired,
+  isOwner: PropTypes.bool.isRequired,
+  onDeleteTweet: PropTypes.func.isRequired,
+  toggleEditing: PropTypes.func.isRequired,
+  toggleComment: PropTypes.func.isRequired,
+  onChangeScope: PropTypes.func.isRequired,
+  IsPublic: PropTypes.bool.isRequired,
+};
 
 export default TweetOptions;
 

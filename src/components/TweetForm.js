@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import { firebaseStore, firebaseStorage } from "../Fbase";
 import { v4 as uuidv4 } from "uuid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -128,6 +129,10 @@ const TweetForm = ({ UserObject }) => {
       </form>
     </div>
   );
+};
+
+TweetForm.propTypes = {
+  UserObject: PropTypes.object.isRequired,
 };
 
 export default TweetForm;

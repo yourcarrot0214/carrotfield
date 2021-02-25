@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { firebaseStore } from "Fbase";
 import { message } from "antd";
 
@@ -42,6 +43,14 @@ const TweetEditor = ({
       </form>
     </>
   );
+};
+
+TweetEditor.propTypes = {
+  tweetObject: PropTypes.object.isRequired,
+  toggleEditing: PropTypes.bool.isRequired,
+  NewTweet: PropTypes.string.isRequired,
+  setNewTweet: PropTypes.func.isRequired,
+  setIsEditing: PropTypes.func.isRequired,
 };
 
 export default TweetEditor;

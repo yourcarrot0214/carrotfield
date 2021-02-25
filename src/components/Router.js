@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { HashRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "../routes/Home";
 import Auth from "../routes/Auth";
@@ -33,6 +34,12 @@ const AppRouter = ({ IsLoggedIn, UserObject, refreshUser }) => {
       </Switch>
     </Router>
   );
+};
+
+AppRouter.propTypes = {
+  IsLoggedIn: PropTypes.bool.isRequired,
+  UserObject: PropTypes.object.isRequired,
+  refreshUser: PropTypes.func.isRequired,
 };
 
 export default AppRouter;
