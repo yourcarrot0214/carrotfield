@@ -13,9 +13,6 @@ const DevCarrot = () => {
             name: <span>'ByungHoon Jeong',</span>
           </li>
           <li>
-            born: <span>'1987.02.14',</span>
-          </li>
-          <li>
             phone: <span>'010-9556-5432',</span>
           </li>
           <li>
